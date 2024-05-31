@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.ComponentScan;
 
 import java.time.LocalDateTime;
 
@@ -30,6 +29,7 @@ public class User {
     private String lastname;
     private String username;
     private String password;
+    private String level;
 
     private String email;
     private LocalDateTime dateOfRegistration;
@@ -45,18 +45,17 @@ public class User {
         this.id = id;
     }
 
-    public User(Long id, String firstname, String lastname, String username, String password, String email, LocalDateTime dateOfRegistration, LocalDateTime lastLogIn) {
+    public User(Long id, String firstname, String lastname, String username, String password, String level, String email, LocalDateTime dateOfRegistration, LocalDateTime lastLogIn) {
         this.id = id;
         this.firstname = firstname;
         this.lastname = lastname;
         this.username = username;
         this.password = password;
+        this.level = level;
         this.email = email;
         this.dateOfRegistration = dateOfRegistration;
         this.lastLogIn = lastLogIn;
     }
-
-    //ToString
 
     @Override
     public String toString() {
@@ -66,6 +65,7 @@ public class User {
                 ", lastname='" + lastname + '\'' +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
+                ", level='" + level + '\'' +
                 ", email='" + email + '\'' +
                 ", dateOfRegistration=" + dateOfRegistration +
                 ", lastLogIn=" + lastLogIn +

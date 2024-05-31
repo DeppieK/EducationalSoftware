@@ -22,12 +22,12 @@ public class UserController {
     @GetMapping("/login")
     public String login() {
 
-        return "login";
+        return "sign_in";
     }
 
     @GetMapping("/signup")
     public String signup() {
-        return "signUp";
+        return "registration";
     }
 
     @PostMapping("/register")
@@ -53,10 +53,16 @@ public class UserController {
 
         userService.save(user);
 
-        return "redirect:/login";
+        return "redirect:/sign_in";
     }
 
-    @GetMapping("/profile")
+    @GetMapping("/main")
+    public String main(Model model) {
+
+        return "main";
+    }
+
+   /* @GetMapping("/profile")
     public String profile(Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
@@ -64,5 +70,5 @@ public class UserController {
         User user = userService.findByUsername(username);
         model.addAttribute("user", user);
         return "profile";
-    }
+    }*/
 }
