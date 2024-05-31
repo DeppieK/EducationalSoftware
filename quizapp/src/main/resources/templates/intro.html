@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML-HOLIC: Introduction to HTML</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #f8f8f8;
+            min-height: 100vh;
+            position: relative; /* Ensure footer doesn't overlap content */
+        }
+
+        header {
+            background-color: #007bff;
+            color: #fff;
+            padding: 15px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        main {
+            padding: 20px;
+            padding-bottom: 70px; /* Adjust for footer height */
+        }
+
+        main h2 {
+            color: #007bff;
+            font-size: 24px;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        main p {
+            font-size: 16px;
+            line-height: 1.6;
+            text-align: left;
+            margin-bottom: 20px;
+        }
+
+        .quiz {
+            background-color: #f0f0f0;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        .quiz h3 {
+            font-size: 20px;
+            color: #007bff;
+            margin-bottom: 10px;
+        }
+
+        .quiz button {
+            display: block;
+            margin: 10px 0; /* Adjust vertical spacing */
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .quiz button:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <h1>HTML-HOLIC</h1>
+    <p>Empowering Developers</p>
+</header>
+<main>
+    <div class="section">
+        <h2>Unit 1: What is HTML?</h2>
+        <p><strong>HTML</strong>, short for HyperText Markup Language, is the core language of the World Wide Web. It defines the content and basic structure of web pages and web applications.</p>
+        <div class="quiz">
+            <h3>Quiz 1: What is HTML?</h3>
+            <p>What does HTML stand for?</p>
+            <button onclick="checkAnswer(this, 'correct')">A) HyperText Markup Language</button>
+            <button onclick="checkAnswer(this, 'incorrect')">B) HyperText Machine Language</button>
+            <button onclick="checkAnswer(this, 'incorrect')">C) Hyper Transfer Markup Language</button>
+            <button onclick="checkAnswer(this, 'incorrect')">D) Hyper Transfer Machine Language</button>
+        </div>
+    </div>
+
+    <div class="section" style="display: none;">
+        <h2>History of HTML</h2>
+        <p>First published by Tim Berners-Lee in 1989, HTML is now used by 94% of all websites, and probably all the ones you visit.</p>
+        <div class="quiz">
+            <h3>Quiz 2: History of HTML</h3>
+            <p>Who first published HTML and in what year?</p>
+            <button onclick="checkAnswer(this, 'incorrect')">A) Bill Gates, 1989</button>
+            <button onclick="checkAnswer(this, 'correct')">B) Tim Berners-Lee, 1989</button>
+            <button onclick="checkAnswer(this, 'incorrect')">C) Steve Jobs, 1989</button>
+            <button onclick="checkAnswer(this, 'incorrect')">D) Tim Berners-Lee, 1995</button>
+        </div>
+    </div>
+
+    <div class="section" style="display: none;">
+        <h2>HTML Usage</h2>
+        <p>HTML is used by approximately 94% of all websites. It is the language that structures all web pages on the internet.</p>
+        <div class="quiz">
+            <h3>Quiz 3: HTML Usage</h3>
+            <p>HTML is used by approximately what percentage of all websites?</p>
+            <button onclick="checkAnswer(this, 'incorrect')">A) 50%</button>
+            <button onclick="checkAnswer(this, 'incorrect')">B) 75%</button>
+            <button onclick="checkAnswer(this, 'correct')">C) 94%</button>
+            <button onclick="checkAnswer(this, 'incorrect')">D) 100%</button>
+        </div>
+    </div>
+
+    <div class="section" style="display: none;">
+        <h2>Understanding HyperText</h2>
+        <p>“HyperText” is text on a web page that contains references to another web page. You probably know these as hyperlinks.</p>
+        <div class="quiz">
+            <h3>Quiz 4: Understanding HyperText</h3>
+            <p>What is "HyperText"?</p>
+            <button onclick="checkAnswer(this, 'correct')">A) Text that contains links to another web page</button>
+            <button onclick="checkAnswer(this, 'incorrect')">B) Text that is emphasized</button>
+            <button onclick="checkAnswer(this, 'incorrect')">C) Text with a larger font size</button>
+            <button onclick="checkAnswer(this, 'incorrect')">D) Text written in all caps</button>
+        </div>
+    </div>
+
+    <div class="section" style="display: none;">
+        <h2>What is Markup?</h2>
+        <p>“Markup” refers to how HTML “marks up” the page with annotations within the HTML file. These annotations tell the browser how to display the document to visitors.</p>
+        <div class="quiz">
+            <h3>Quiz 5: What is Markup?</h3>
+            <p>What does "Markup" in HTML refer to?</p>
+            <button onclick="checkAnswer(this, 'incorrect')">A) Adding comments to code</button>
+            <button onclick="checkAnswer(this, 'correct')">B) Annotating a page with instructions on how to display it</button>
+            <button onclick="checkAnswer(this, 'incorrect')">C) Highlighting text with colors</button>
+            <button onclick="checkAnswer(this, 'incorrect')">D) Writing in a different language</button>
+        </div>
+    </div>
+
+    <div class="section" style="display: none;">
+        <h2>HTML: Language or Not?</h2>
+        <p>Whether HTML is a “programming” language is debated. Most agree it's a “markup” language. Some argue it’s a declarative programming language.</p>
+        <div class="quiz">
+            <h3>Quiz 6: HTML: Language or Not?</h3>
+            <p>What type of language is HTML considered to be?</p>
+            <button onclick="checkAnswer(this, 'incorrect')">A) Programming language</button>
+            <button onclick="checkAnswer(this, 'correct')">B) Declarative language</button>
+            <button onclick="checkAnswer(this, 'incorrect')">C) Styling language</button>
+            <button onclick="checkAnswer(this, 'incorrect')">D) Scripting language</button>
+        </div>
+    </div>
+
+    <div class="section" style="display: none;">
+        <h2>HTML's Function</h2>
+        <p>HTML provides structure and content to web pages. It creates a simple base for adding styling with CSS (Cascading Style Sheets).</p>
+        <div class="quiz">
+            <h3>Quiz 7: HTML's Function</h3>
+            <p>Which of the following best describes HTML's function?</p>
+            <button onclick="checkAnswer(this, 'incorrect')">A) It evaluates expressions and declares variables</button>
+            <button onclick="checkAnswer(this, 'correct')">B) It provides structure and content to web pages</button>
+            <button onclick="checkAnswer(this, 'incorrect')">C) It styles web pages</button>
+            <button onclick="checkAnswer(this, 'incorrect')">D) It handles web server logic</button>
+        </div>
+    </div>
+
+    <div class="navigation">
+        <button onclick="previousSection()">Previous</button>
+        <button onclick="nextSection()">Next</button>
+    </div>
+</main>
+<footer>
+    <p>HTML-HOLIC &copy; 2024</p>
+</footer>
+<script>
+    let currentSection = 0;
+    const sections = document.querySelectorAll('.section');
+
+    function showSection(index) {
+        sections.forEach((section, i) => {
+            section.style.display = i === index ? 'block' : 'none';
+        });
+    }
+
+    function nextSection() {
+        if (currentSection < sections.length - 1) {
+            currentSection++;
+            showSection(currentSection);
+        }
+    }
+
+    function previousSection() {
+        if (currentSection > 0) {
+            currentSection--;
+            showSection(currentSection);
+        }
+    }
+
+    function checkAnswer(button, status) {
+        if (status === 'correct') {
+            button.style.backgroundColor = 'green';
+        } else {
+            button.style.backgroundColor = 'red';
+        }
+        setTimeout(() => {
+            button.style.backgroundColor = '#007bff';
+        }, 1000);
+    }
+
+    // Show the first section initially
+    showSection(currentSection);
+</script>
+</body>
+</html>
