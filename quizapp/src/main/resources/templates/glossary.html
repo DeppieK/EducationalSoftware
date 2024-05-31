@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HTML-HOLIC Glossary</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      background-color: #f8f8f8;
+    }
+
+    header {
+      background-color: #007bff;
+      color: #fff;
+      padding: 15px;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 35px;
+      margin-bottom: 0px;
+    }
+
+    header p {
+      font-size: 16px;
+      margin-bottom: 1px;
+    }
+
+    main {
+      padding: 20px;
+    }
+
+    .glossary-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+    }
+
+ .glossary-item {
+  width: calc(43.33% - 10px); /* Adjusted width calculation */
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 25px;
+  margin: 10px; /* Adjusted margin */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+    .glossary-item h3 {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 8px;
+      color: #007bff;
+    }
+
+    .glossary-item p {
+      font-size: 13px;
+      line-height: 1.6;
+      color: #333;
+    }
+
+    .glossary-item pre {
+      background-color: #f0f0f0;
+      padding: 2px;
+      border-radius: 5px;
+      overflow-x: auto;
+    }
+
+    .navigation-buttons {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .navigation-buttons button {
+      margin: 0 5px;
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .navigation-buttons button:hover {
+      background-color: #0056b3;
+    }
+	
+ .decoration-line {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #0560B7;
+      height: 34px;
+      color: #fff;
+    }
+
+    .menu-item {
+      margin: 0 10px;
+      padding: 5px 20px;
+      background-color: #007bff;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 0px;
+      transition: background-color 0.3s, transform 0.3s;
+    }
+
+    .menu-item:hover {
+      background-color: #0056b3;
+      transform: scale(1.1);
+    }
+    footer {
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 0px; 
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>HTML-HOLIC</h1>
+    <p>Empowering Developers</p>
+  </header>
+   <div class="decoration-line">
+    <a href="profile.html" class="menu-item">Profile</a>
+    <a href="glossary.html" class="menu-item">HTML Glossary</a>
+    <a href="basics.html" class="menu-item">HTML Basics</a>
+    <a href="intermediate.html" class="menu-item">HTML Intermediate</a>
+    <a href="sematic.html" class="menu-item">Semantic HTML</a>
+    <a href="access.html" class="menu-item">Accessibility Basics</a>
+    <a href="forms.html" class="menu-item">HTML Forms</a>
+	<a href="logout.html" class="menu-item">Log out</a>
+
+
+  </div>
+  <main>
+  
+    <div class="glossary-container">
+	
+	
+	
+      <div class="glossary-item">
+        <h3>Line Breaks</h3>
+        <p>We can separate lines of text in HTML with the help of the line break tag: <code>&lt;br&gt;</code>.</p>
+        <p>For example:</p>
+        <pre><code>&lt;h1&gt; My favorite things &lt;/h1&gt;<br>&lt;p&gt;<br>Raindrops on roses &lt;br&gt;<br>Whiskers on kittens &lt;br&gt;<br>Bright copper kettles &lt;br&gt;<br>Warm woolen mittens<br>&lt;/p&gt;<br></code></pre>
+		<button onclick="show()">Show result</button>
+    </div>
+	
+	
+	  
+    <div class="glossary-item">
+        <h3>Links</h3>
+        <p>To create a link in HTML, we use the anchor tag <code>&lt;a&gt;</code> with the <code>href</code> attribute.</p><p>For example:</p>
+        <pre><code>&lt;a href="https://example.com"&gt;Link Text&lt;/a&gt;</code></pre>
+				<button onclick="show()">Show result</button>
+
+		<p>To link the text to a webpage, we add <code>&lt;href=""&gt;</code> along with a uniform Resource Locator (URL) <code>&lt;href&gt;</code> id short for "hypertext reference.</p>
+		<p>For example:</p>
+		<pre><code>&lt;a href="hhtps://html.holic.gr"&gt;<br>Learn to Code<br>&lt;/a&gt;</code></pre>
+		<button onclick="show()">Show result</button>
+
+    </div>
+	  
+	<div class="glossary-item">
+        <h3>Attributes</h3>
+        <p><code>&lt;href&gt;</code> is an attribute. All attributes have two things in common: they provide extra information and they go inside the opening tag. <br>	Attrobutes are added after the name of the tag, and before the > closing sign.</p>
+		<p>For example:</p>
+		<pre><code>&lt;a href="hhtps://html.holic.gr"&gt;<br>Learn to Code<br>&lt;/a&gt;</code></pre>
+		<button onclick="show()">Show result</button>
+
+    </div>
+	  
+	<div class="glossary-item">
+        <h3>Images</h3>
+        <p>To add image to a website, we start with <code>&lt;img&gt;</code> tag.</p>
+		<p>Just like &lt;br&gt;, &lt;img&gt; is an empty tag. That means it has no closing tag.</p>
+		<p>To display an image, an image tag needs the &lt;src&gt; attribute. &lt;src&gt; stands for source.</p>
+        <p>For example:</p>
+        <pre><code>&lt;h3&gt;Drawing of<br>&lt;em&gt; Earthrises &lt;/em&gt; <br>&lt;/h3&gt;<br>&lt;img src="https://html.holic.gr/app.png"&gt;<br></code></pre>
+    	<button onclick="show()">Show result</button>
+	</div>  
+	  
+	<div class="glossary-item">
+        <h3>Including JavaScript</h3>
+        <p>To add JavaScript code to a webpage, we start with the <code>&lt;script&gt;</code> and <code>&lt;/script&gt;</code> tags.</p>
+		<p>The &lt;script&gt; element is the last element before the closing &lt;/body&gt; tag in the HTML structure. </p>
+		<p>In the JS file, we can write JavaScript like &lt;const username = "Lee"&gt; </p>
+        <p>For example:</p>
+        <pre><code><b>index.html</b><br>&lt;body&gt; <br>&lt;h3&gt;Tweeter&lt;/h3&gt;<br>&lt;script src="script.js"&gt;&lt;/script&gt;<br>&lt;/body&gt;<br></code></pre>
+        <pre><code><b>script.js</b><br>const username= "Lee";</code></pre>
+		<button onclick="show()">Show result</button>
+	</div> 
+	
+	<div class="glossary-item">
+        <h3>Buttons</h3>
+        <p>To create a button users can click on, we need the opening <code>&lt;button&gt;</code> and closing <code>&lt;/button&gt;</code> tags.</p>
+		<p>For example:</p>
+		<pre><code>&lt;body&gt;<br>&lt;p&gt; Subscribe to our Newsletter &lt;/p&gt; <br>&lt;button&gt; Subscribe &lt;/button&gt;<br>&lt;/body&gt;</code></pre>
+		<p>We can make texts appear on a button by typing them between the tags.</p>
+        <p>For example:</p>
+		<pre><code>&lt;body&gt;<br>&lt;h1&gt; Facebook&lt;/h1&gt;<br>&lt;p&gt; Log in to your account to get started &lt;/p&gt;<br>&lt;button&gt; Login &lt;/button&gt;<br>&lt;/body&gt;</code></pre>
+    	<button onclick="show()">Show result</button>
+	</div>  
+	  
+	<div class="glossary-item">
+        <h3>Input Elements</h3>
+        <p>We create input elements using the empty <code>&lt;input&gt;</code> tag.</p>
+		<p>For example:</p>
+		<pre><code>&lt;body&gt;<br>&lt;h4&gt; Sign up &lt;/h4&gt; <br>&lt;input/&gt;<br>&lt;/body&gt;</code></pre>
+		<p>The default value for type is <code>&lt;text&gt;</code> which lets users enter in text they can see.</p>
+        <p>For example:</p>
+		<pre><code>&lt;body&gt;<br>&lt;h4&gt; Sign up &lt;/h4&gt;<br>&lt;input type="text" placeholder="Email"&gt; &lt;br&gt;<br>&lt;input type="password" placeholder="Password"&gt; &lt;/body&gt;
+		<button onclick="show()">Show result</button>
+	</div>    
+	  
+	<div class="glossary-item">
+        <h3>Divs</h3>
+        <p>We create a group of elements, we surround the elements with <code>&lt;div&gt;</code> and <code>&lt;/div&gt;</code> tags.</p>
+		<p>For example:</p>
+		<pre><code>&lt;body&gt;<br>&lt;div&gt;<br>&lt;h3&gt; Latest News &lt;/h3&gt; <br>&lt;h1&gt; Where VC's are investing in Fintech &lt;/h1&gt;<br>&lt;p&gt; Arman&lt;/p&gt;<br>&lt;/div&gt;<br>&lt;/body&gt;</code></pre>
+		<button onclick="show()">Show result</button>
+	</div>    
+	  
+	<div class="glossary-item">
+        <h3>Ordered Lists</h3>
+        <p>An ordered list is made out of <code>&lt;ol&gt;</code> and <code>&lt;/ol&gt;</code> tags.The letter O stands for "ordered" and the letter L stands for "list".</p>
+		<p>For example:</p>
+		<pre><code>&lt;body&gt;<br>&lt;ol&gt;&lt;/ol&gt;<br>&lt;/body&gt;</code></pre>
+		<p>To add a list item, we add text between the <code>&lt;li&gt;</code> and <code>&lt;/li&gt;</code> tags.In this case the L stands for "list" and the I stands for "item".</p>
+		<p>For example:</p>
+		<pre><code>&lt;body&gt;<br>&lt;ol&gt;<br>&lt;li&gt;Tortoise&lt;/il&gt;<br>&lt;/ol&gt;<br>&lt;/body&gt;</code></pre>
+	    <button onclick="show()">Show result</button>
+</div>    
+	    
+	<div class="glossary-item">
+        <h3>Unordered Lists</h3>
+        <p>To create an unordered list, we use the <code>&lt;ul&gt;</code> and <code>&lt;/ul&gt;</code> tags.The letter U stands for "unordered" and the letter L stands for "list".</p>
+		<p>For example:</p>
+		<pre><code>&lt;body&gt;<br>&lt;ul&gt;&lt;/ul&gt;<br>&lt;/body&gt;</code></pre>
+		<p>To add a list item, we add text between the <code>&lt;li&gt;</code> and <code>&lt;/li&gt;</code> tags.In this case the L stands for "list" and the I stands for "item".</p>
+		<p>For example:</p>
+		<pre><code>&lt;body&gt;<br>&lt;ol&gt;<br>&lt;li&gt;Home&lt;/il&gt;<br>&lt;li&gt;About&lt;/il&gt;<br>&lt;li&gt;Contact&lt;/il&gt;<br>&lt;/ol&gt;<br>&lt;/body&gt;</code></pre>
+		<button onclick="show()">Show result</button>
+	</div> 
+	
+	<div class="glossary-item">
+        <h3>Linking Local webpages</h3>
+        <p>We can access locan webpages like trail.html by adding <code>&lt;/&gt;</code> before the file name, just like locan images.</p>
+		<p>For example:</p>
+        <pre><code><b>index.html</b><br>&lt;body&gt;<br>&lt;h5&gt; History of the American Pioneers&lt;/h5&gt; <br>&lt;a href="/trail.html&gt;<br>Follow the <br> &lt;strong&gt; trail &lt;/strong&gt;<br> by clicking here &lt;/a&gt;<br>&lt;/body&gt;</code></pre>
+		<button onclick="show()">Show result</button>
+	</div>
+
+    </div>
+    <div class="navigation-buttons">
+      <button onclick="previous()">Previous</button>
+      <button onclick="next()">Next</button>
+    </div>
+  </main>
+  <footer>
+    <p>&copy; 2024 Html-holic by Batska Katerina</p>
+  </footer>
+  
+  <script>
+    let currentIndex = 0;
+    const glossaryItems = document.querySelectorAll('.glossary-item');
+
+    function showItems(startIndex) {
+      glossaryItems.forEach((item, index) => {
+        if (index >= startIndex && index < startIndex + 2) {
+          item.style.display = 'block';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    }
+
+    function next() {
+      currentIndex += 2;
+      if (currentIndex >= glossaryItems.length) {
+        currentIndex = 0;
+      }
+      showItems(currentIndex);
+    }
+
+    function previous() {
+      currentIndex -= 2;
+      if (currentIndex < 0) {
+        currentIndex = Math.floor((glossaryItems.length - 1) / 2) * 2;
+      }
+      showItems(currentIndex);
+    }
+
+    // Show the first set of items initially
+    showItems(currentIndex);
+	
+	function show() {
+    const glossaryItem = document.querySelector('.glossary-item:first-child');
+    const resultDiv = glossaryItem.querySelector('.result-div');
+
+    // If resultDiv exists, remove it; otherwise, add it
+    if (resultDiv) {
+      resultDiv.remove();
+    } else {
+      const newResultDiv = document.createElement('div');
+      newResultDiv.className = 'result-div';
+      newResultDiv.innerHTML = `<h1>My favorite things</h1>
+                                 <p>Raindrops on roses <br>
+                                 Whiskers on kittens <br>
+                                 Bright copper kettles <br>
+                                 Warm woolen mittens</p>`;
+      glossaryItem.appendChild(newResultDiv);
+    }
+  }
+
+	
+  </script>
+</body>
+</html>
