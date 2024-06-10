@@ -1,38 +1,140 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>HTML-HOLIC Glossary</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      background-color: #f8f8f8;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML-HOLIC</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@300;400&display=swap">
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            font-family: 'Roboto', sans-serif;
+            background-color: #e0e0e0;
+        }
 
-    header {
-      background-color: #007bff;
-      color: #fff;
-      padding: 15px;
-      text-align: center;
-    }
+        header {
+            background-color: #c0c0c0;
+            color: #333;
+            padding: 5px;
+            text-align: left;
+            position: relative;
+            font-family: 'Montserrat', sans-serif;
+        }
 
-    header h1 {
-      font-size: 35px;
-      margin-bottom: 0px;
-    }
+        header h1 {
+            font-size: 26px;
+            margin-bottom: 3px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+        }
 
-    header p {
-      font-size: 16px;
-      margin-bottom: 1px;
-    }
 
-    main {
-      padding: 20px;
-    }
+        header p {
+            font-size: 16px;
+            margin-bottom: 10px;
+            font-weight: 400;
+        }
+
+        .menu {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            text-align: center; /* Center align the menu */
+        }
+        .menu a {
+            display: block;
+            color: #333;
+            text-decoration: none;
+            margin: 3px 0;
+            padding: 8px;
+            background-color: #fff;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+            font-weight: 400;
+            display: flex;
+            align-items: center;
+        }
+
+        .menu a img {
+            width: 18px;
+            height: 18px;
+            margin-right: 8px;
+        }
+
+        .menu a:hover {
+            background-color: #999;
+            color: #fff;
+        }
+
+        .navbar {
+            background-color: #b0b0b0;
+            overflow: auto;
+        }
+
+        .navbar ul {
+            padding: 0;
+            margin: 0;
+            list-style-type: none;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .navbar ul li {
+            position: relative;
+        }
+
+        .navbar ul li a {
+            display: block;
+            padding: 12px 12px;
+            color: #333;
+            text-decoration: none;
+            transition: background-color 0.3s, color 0.3s;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+        }
+
+        .navbar ul li a:hover {
+            background-color: #999;
+        }
+
+        .navbar ul li ul {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #b0b0b0;
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            min-width: 200px;
+            z-index: 1000;
+        }
+
+        .navbar ul li ul li {
+            display: block;
+        }
+
+        .navbar ul li ul li a {
+            padding: 6px 10px;
+            font-weight: 360;
+        }
+
+        .navbar ul li:hover ul {
+            display: block;
+        }
+
+        main {
+            padding: 20px;
+            background-color: #fafafa;
+            flex: 1;
+            display: flex;
+            justify-content: space-around; /* Adjust spacing between image containers */
+            align-items: center; /* Align items vertically */
+        }
 
     .glossary-container {
       display: flex;
@@ -89,35 +191,14 @@
     .navigation-buttons button:hover {
       background-color: #0056b3;
     }
-	
- .decoration-line {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background-color: #0560B7;
-      height: 34px;
-      color: #fff;
-    }
 
-    .menu-item {
-      margin: 0 10px;
-      padding: 5px 20px;
-      background-color: #007bff;
-      color: #fff;
-      text-decoration: none;
-      border-radius: 0px;
-      transition: background-color 0.3s, transform 0.3s;
-    }
 
-    .menu-item:hover {
-      background-color: #0056b3;
-      transform: scale(1.1);
-    }
+
     footer {
       background-color: #333;
       color: #fff;
       text-align: center;
-      padding: 0px; 
+      padding: 0px;
       position: fixed;
       bottom: 0;
       width: 100%;
@@ -126,27 +207,28 @@
 </head>
 <body>
   <header>
-    <h1>HTML-HOLIC</h1>
-    <p>Empowering Developers</p>
+      <h1>HTML-HOLIC</h1>
+      <p>Empowering Developers</p>
+      <div class="menu">
+          <a href="profile.html"><img src="profile.png" alt="Profile Icon"> Profile</a>
+          <a href="logout.html"><img src="logout.png" alt="Logout Icon"> Logout</a>
+      </div>
   </header>
-   <div class="decoration-line">
-    <a href="profile.html" class="menu-item">Profile</a>
-    <a href="glossary.html" class="menu-item">HTML Glossary</a>
-    <a href="basics.html" class="menu-item">HTML Basics</a>
-    <a href="intermediate.html" class="menu-item">HTML Intermediate</a>
-    <a href="sematic.html" class="menu-item">Semantic HTML</a>
-    <a href="access.html" class="menu-item">Accessibility Basics</a>
-    <a href="forms.html" class="menu-item">HTML Forms</a>
-	<a href="logout.html" class="menu-item">Log out</a>
-
-
+  <div class="navbar">
+      <ul>
+          <li><a href="homepage.html">Home</a></li>
+          <li><a href="intro.html">HTML Intro</a></li>
+          <li><a href="basics.html">HTML Basics</a></li>
+          <li><a href="forms.html">HTML Forms</a></li>
+          <li><a href="glossary.html">HTML Glossary</a></li>
+      </ul>
   </div>
   <main>
-  
+
     <div class="glossary-container">
-	
-	
-	
+
+
+
       <div class="glossary-item">
         <h3>Line Breaks</h3>
         <p>We can separate lines of text in HTML with the help of the line break tag: <code>&lt;br&gt;</code>.</p>
@@ -154,9 +236,9 @@
         <pre><code>&lt;h1&gt; My favorite things &lt;/h1&gt;<br>&lt;p&gt;<br>Raindrops on roses &lt;br&gt;<br>Whiskers on kittens &lt;br&gt;<br>Bright copper kettles &lt;br&gt;<br>Warm woolen mittens<br>&lt;/p&gt;<br></code></pre>
 		<button onclick="show()">Show result</button>
     </div>
-	
-	
-	  
+
+
+
     <div class="glossary-item">
         <h3>Links</h3>
         <p>To create a link in HTML, we use the anchor tag <code>&lt;a&gt;</code> with the <code>href</code> attribute.</p><p>For example:</p>
@@ -169,7 +251,7 @@
 		<button onclick="show()">Show result</button>
 
     </div>
-	  
+
 	<div class="glossary-item">
         <h3>Attributes</h3>
         <p><code>&lt;href&gt;</code> is an attribute. All attributes have two things in common: they provide extra information and they go inside the opening tag. <br>	Attrobutes are added after the name of the tag, and before the > closing sign.</p>
@@ -220,7 +302,7 @@
         <p>For example:</p>
 		<pre><code>&lt;body&gt;<br>&lt;h4&gt; Sign up &lt;/h4&gt;<br>&lt;input type="text" placeholder="Email"&gt; &lt;br&gt;<br>&lt;input type="password" placeholder="Password"&gt; &lt;/body&gt;
 		<button onclick="show()">Show result</button>
-	</div>    
+
 	  
 	<div class="glossary-item">
         <h3>Divs</h3>
@@ -265,11 +347,12 @@
       <button onclick="previous()">Previous</button>
       <button onclick="next()">Next</button>
     </div>
+      </div>
   </main>
   <footer>
-    <p>&copy; 2024 Html-holic by Batska Katerina</p>
+      <p>&copy; 2024 Html-holic by Unipi Informatics Students</p>
   </footer>
-  
+
   <script>
     let currentIndex = 0;
     const glossaryItems = document.querySelectorAll('.glossary-item');
@@ -302,7 +385,7 @@
 
     // Show the first set of items initially
     showItems(currentIndex);
-	
+
 	function show() {
     const glossaryItem = document.querySelector('.glossary-item:first-child');
     const resultDiv = glossaryItem.querySelector('.result-div');
@@ -322,7 +405,7 @@
     }
   }
 
-	
+
   </script>
 </body>
 </html>

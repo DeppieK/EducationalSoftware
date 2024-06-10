@@ -4,105 +4,211 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>HTML-HOLIC</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@300;400&display=swap">
   <style>
-    body {
-      font-family: Arial, sans-serif;
+    html, body {
+      height: 100%;
       margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      background-color: #f8f8f8;
+      display: flex;
+      flex-direction: column;
+      font-family: 'Roboto', sans-serif;
+      background-color: #e0e0e0;
     }
 
     header {
-      background-color: #007bff;
-      color: #fff;
-      padding: 15px;
-      text-align: center;
+      background-color: #c0c0c0;
+      color: #333;
+      padding: 5px;
+      text-align: left;
+      position: relative;
+      font-family: 'Montserrat', sans-serif;
     }
 
     header h1 {
-      font-size: 40px;
-      margin-bottom: 10px;
+      font-size: 26px;
+      margin-bottom: 3px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
     }
 
+
     header p {
-      font-size: 18px;
-      margin-bottom: 20px;
+      font-size: 16px;
+      margin-bottom: 10px;
+      font-weight: 400;
+    }
+
+    .menu {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      text-align: center; /* Center align the menu */
+    }
+    .menu a {
+      display: block;
+      color: #333;
+      text-decoration: none;
+      margin: 3px 0;
+      padding: 8px;
+      background-color: #fff;
+      border-radius: 5px;
+      transition: background-color 0.3s, color 0.3s;
+      font-weight: 400;
+      display: flex;
+      align-items: center;
+    }
+
+    .menu a img {
+      width: 18px;
+      height: 18px;
+      margin-right: 8px;
+    }
+
+    .menu a:hover {
+      background-color: #999;
+      color: #fff;
+    }
+
+    .navbar {
+      background-color: #b0b0b0;
+      overflow: auto;
+    }
+
+    .navbar ul {
+      padding: 0;
+      margin: 0;
+      list-style-type: none;
+      display: flex;
+      justify-content: space-around;
+    }
+
+    .navbar ul li {
+      position: relative;
+    }
+
+    .navbar ul li a {
+      display: block;
+      padding: 12px 12px;
+      color: #333;
+      text-decoration: none;
+      transition: background-color 0.3s, color 0.3s;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+    }
+
+    .navbar ul li a:hover {
+      background-color: #999;
+    }
+
+    .navbar ul li ul {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background-color: #b0b0b0;
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+      min-width: 200px;
+      z-index: 1000;
+    }
+
+    .navbar ul li ul li {
+      display: block;
+    }
+
+    .navbar ul li ul li a {
+      padding: 6px 10px;
+      font-weight: 360;
+    }
+
+    .navbar ul li:hover ul {
+      display: block;
     }
 
     main {
       padding: 20px;
-    }
-
-    main h4 {
-      color: #007bff;
-      font-size: 24px;
-      margin-bottom: 10px;
-      text-align: center;
-    }
-
-    main p {
-      font-size: 16px;
-      line-height: 1.6;
-      text-align: center;
-    }
-
-    .decoration-line {
+      background-color: #fafafa;
+      flex: 1;
       display: flex;
-      align-items: center;
-      justify-content: center;
-      background-color: #333;
-      height: 60px;
-      color: #fff;
+      justify-content: space-around; /* Adjust spacing between image containers */
+      align-items: center; /* Align items vertically */
     }
 
-    .menu-item {
-      margin: 0 10px;
-      padding: 10px 20px;
-      background-color: #007bff;
-      color: #fff;
-      text-decoration: none;
-      border-radius: 0px;
-      transition: background-color 0.3s, transform 0.3s;
+
+    .image-container {
+      margin-top: 20px;
+      text-align: center;
+      margin:13px;
     }
 
-    .menu-item:hover {
-      background-color: #0056b3;
-      transform: scale(1.1);
+    .image-container img {
+      max-width: 100px; /* Adjust as needed */
+      height: auto;
+
+    }
+
+    .image-container p {
+      margin-top: 10px;
+      font-size: 17px;
+      color: #333;
+      margin: 25px;
     }
 
     footer {
-      background-color: #333;
-      color: #fff;
+      background-color: #b0b0b0;
+      color: #333;
       text-align: center;
-      padding: 0px; 
-      position: fixed;
-      bottom: 0;
+      padding: 5px;
       width: 100%;
+      font-family: 'Roboto', sans-serif;
+      font-weight: 400;
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>HTML-HOLIC</h1>
-    <p>Empowering Developers</p>
-  </header>
-  <div class="decoration-line">
-    <a href="profile.html" class="menu-item">Profile</a>
-    <a href="glossary.html" class="menu-item">HTML Glossary</a>
-    <a href="basics.html" class="menu-item">HTML Basics</a>
-    <a href="intermediate.html" class="menu-item">HTML Intermediate</a>
-    <a href="sematic.html" class="menu-item">Semantic HTML</a>
-    <a href="access.html" class="menu-item">Accessibility Basics</a>
-    <a href="forms.html" class="menu-item">HTML Forms</a>
-	<a href="logout.html" class="menu-item">Log out</a>
-
+<header>
+  <h1>HTML-HOLIC</h1>
+  <p>Empowering Developers</p>
+  <div class="menu">
+    <a href="profile.html"><img src="profile.png" alt="Profile Icon"> Profile</a>
+    <a href="logout.html"><img src="logout.png" alt="Logout Icon"> Logout</a>
   </div>
-  <main>
-    <!-- Περιεχόμενο του main -->
-  </main>
-  <footer>
-    <p>&copy; 2024 Html-holic by Batska Katerina</p>
-  </footer>
+</header>
+<div class="navbar">
+  <ul>
+    <li><a href="intro.html">HTML Intro</a></li>
+    <li><a href="basics.html">HTML Basics</a></li>
+    <li><a href="forms.html">HTML Forms</a></li>
+    <li><a href="glossary.html">HTML Glossary</a></li>
+  </ul>
+</div>
+<main>
+  <div class="image-container">
+    <img src="first.png" alt="Intro Image">
+    <p><b>Introduction to HTML</b></p>
+    <p>A comprehensive overview of HTML, covering its history, purpose, and basic structure.</p>
+  </div>
+  <div class="image-container">
+    <img src="second.png" alt="Basics Image">
+    <p><b>Basics of HTML</b></p>
+    <p>Exploring the fundamental elements and concepts of HTML, including tags, attributes, and syntax.</p>
+  </div>
+  <div class="image-container">
+    <img src="third.png" alt="Forms Image">
+    <p><b>Working with HTML Forms</b></p>
+    <p>Learn how to create and customize forms in HTML to collect user input and interact with web servers.</p>
+  </div>
+  <div class="image-container">
+    <img src="fourth.png" alt="Glossary Image">
+    <p><b>HTML Glossary</b></p>
+    <p>Discover a comprehensive list of terms and definitions commonly used in HTML development.</p>
+  </div>
+</main>
+
+<footer>
+  <p>&copy; 2024 Html-holic by Unipi Informatics Students</p>
+</footer>
 </body>
 </html>
