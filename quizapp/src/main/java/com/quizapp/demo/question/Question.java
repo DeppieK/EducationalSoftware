@@ -1,10 +1,13 @@
 package com.quizapp.demo.question;
 
+import com.quizapp.demo.questionOption.QuestionOption;
 import com.quizapp.demo.quiz.Quiz;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+import java.util.List;
 
 @Setter
 @Getter
@@ -42,6 +45,9 @@ public class Question {
     @ManyToOne
     @JoinColumn(name = "alternative_question_id")
     private Question alternativeQuestion;
+
+    @OneToMany(mappedBy = "question", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<QuestionOption> questionOptions;
 
     // Constructors
     public Question() {

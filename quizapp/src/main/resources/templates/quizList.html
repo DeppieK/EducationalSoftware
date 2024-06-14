@@ -51,20 +51,19 @@
             margin-bottom: 20px;
         }
 
-        .question {
-            background-color: #f0f0f0;
+        .quiz {
             padding: 20px;
             border-radius: 5px;
             margin-bottom: 20px;
         }
 
-         h3 {
+        .quiz h3 {
             font-size: 20px;
             color: #007bff;
             margin-bottom: 10px;
         }
 
-        .question button {
+        .quiz button {
             display: block;
             margin: 10px 0; /* Adjust vertical spacing */
             padding: 10px 20px;
@@ -90,8 +89,8 @@
             bottom: 0;
             width: 100%;
         }
-        ul{
-            list-style-type: none;
+        .href{
+            text-decoration: none;
         }
     </style>
 </head>
@@ -114,64 +113,18 @@
     </ul>
 </div>
 <main>
-    <div class="section">
-        <h2 th:text="'Quiz: ' + ${quiz.title}"></h2>
-        <div th:each="question : ${questions}" class="question">
-            <p th:text="${question.questionText}"></p>
-            <ul>
-                <li th:each="option : ${question.questionOptions}">
-                    <label>
-                        <button th:text="${option.optionText}" th:value="${option.optionText}"></button>
-                    </label>
-                </li>
-            </ul>
-        </div>
+
+    <h3>Quiz List:</h3>
+    <div th:each="quiz : ${quiz}" class="quiz">
+        <a th:href="@{/quiz/{quizId}(quizId = ${quiz.quizId})}" class="href">
+            <button th:text="'Quiz ' + ${quiz.quizId}"></button>
+        </a>
     </div>
-    <div class="navigation">
-        <button onclick="previousSection()">Previous</button>
-        <button onclick="nextSection()">Next</button>
-    </div>
+
 </main>
 <footer>
     <p>HTML-HOLIC &copy; 2024</p>
 </footer>
-<script>
-    let currentSection = 0;
-    const sections = document.querySelectorAll('.section');
 
-    function showSection(index) {
-        sections.forEach((section, i) => {
-            section.style.display = i === index ? 'block' : 'none';
-        });
-    }
-
-    function nextSection() {
-        if (currentSection < sections.length - 1) {
-            currentSection++;
-            showSection(currentSection);
-        }
-    }
-
-    function previousSection() {
-        if (currentSection > 0) {
-            currentSection--;
-            showSection(currentSection);
-        }
-    }
-
-    function checkAnswer(button, status) {
-        if (status === 'correct') {
-            button.style.backgroundColor = 'green';
-        } else {
-            button.style.backgroundColor = 'red';
-        }
-        setTimeout(() => {
-            button.style.backgroundColor = '#007bff';
-        }, 1000);
-    }
-
-    // Show the first section initially
-    showSection(currentSection);
-</script>
 </body>
 </html>

@@ -1,6 +1,7 @@
 package com.quizapp.demo.user;
 
-
+import com.quizapp.demo.quiz.Quiz;
+import com.quizapp.demo.quiz.QuizService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -12,12 +13,19 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Controller
 public class UserController {
 
     @Autowired
     private UserService userService;
+    private QuizService quizService;
+
+    public UserController(UserService userService, QuizService quizService) {
+        this.userService = userService;
+        this.quizService = quizService;
+    }
 
     @GetMapping("/login")
     public String login() {
@@ -62,13 +70,41 @@ public class UserController {
         return "main";
     }
 
-   /* @GetMapping("/profile")
+    @GetMapping("/homepage")
+    public String homepage(Model model) {
+        return "homepage";
+    }
+    @GetMapping("/profile")
     public String profile(Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
 
         User user = userService.findByUsername(username);
         model.addAttribute("user", user);
+
         return "profile";
-    }*/
+    }
+
+    @GetMapping("/quizList")
+    public String intro(Model model) {
+        List<Quiz> quiz = quizService.getQuiz();
+        model.addAttribute("quiz", quiz);
+
+        return "quizList";
+    }
+
+    @GetMapping("/basics")
+    public String basics(Model model) {
+        return "basics";
+    }
+
+    @GetMapping("/forms")
+    public String forms(Model model) {
+        return "forms";
+    }
+
+    @GetMapping("/glossary")
+    public String glossary(Model model) {
+        return "glossary";
+    }
 }

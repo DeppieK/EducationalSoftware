@@ -32,9 +32,6 @@ public class QuestionAttempt {
     @JoinColumn(name = "question_id", nullable = false)
     private Question question;
 
-    //do we need this?
-    @Column(name = "user_response", columnDefinition = "TEXT")
-    private String userResponse;
 
     @Column(name = "is_correct", nullable = false)
     private Boolean isCorrect;
@@ -47,11 +44,10 @@ public class QuestionAttempt {
         this.questionAttemptId = questionAttemptId;
     }
 
-    public QuestionAttempt(Long questionAttemptId, Integer attemptId, Question question, String userResponse, Boolean isCorrect) {
+    public QuestionAttempt(Long questionAttemptId, Integer attemptId, Question question, Boolean isCorrect) {
         this.questionAttemptId = questionAttemptId;
         this.attemptId = attemptId;
         this.question = question;
-        this.userResponse = userResponse;
         this.isCorrect = isCorrect;
     }
 
@@ -61,7 +57,6 @@ public class QuestionAttempt {
                 "questionAttemptId=" + questionAttemptId +
                 ", attemptId=" + attemptId +
                 ", question=" + question +
-                ", userResponse='" + userResponse + '\'' +
                 ", isCorrect=" + isCorrect +
                 '}';
     }

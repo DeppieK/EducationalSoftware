@@ -213,22 +213,22 @@
   <h1>HTML-HOLIC</h1>
   <p>Empowering Developers</p>
   <div class="menu">
-    <a href="profile.html"><img src="profile.png" alt="Profile Icon"> Profile</a>
-    <a href="sign_in.html"><img src="logout.png" alt="Logout Icon"> Logout</a>
+    <a th:href="@{/profile}"><!--<img src="profile.png" alt="Profile Icon"> -->Profile</a>
+    <a th:href="@{/logout}"><!--<img src="logout.png" alt="Logout Icon"> -->Logout</a>
   </div>
 </header>
 <div class="navbar">
   <ul>
-    <li><a href="homepage.html">Home</a></li>
-    <li><a href="intro.html">HTML Intro</a></li>
-    <li><a href="basics.html">HTML Basics</a></li>
-    <li><a href="forms.html">HTML Forms</a></li>
-    <li><a href="glossary.html">HTML Glossary</a></li>
+    <li><a th:href="@{/homepage}">Home</a></li>
+    <li><a th:href="@{/quizList}">HTML Quizzes</a></li>
+    <li><a th:href="@{/basics}">HTML Basics</a></li>
+    <li><a th:href="@{/forms}">HTML Forms</a></li>
+    <li><a th:href="@{/glossary}">HTML Glossary</a></li>
   </ul>
 </div>
 <main>
   <div class="profile-container">
-    <h2>John Doe</h2>
+    <h2 th:text="${user.username}">'s profile</h2>
     <div class="profile-details">
       <h3>Profile Information</h3>
       <table>
@@ -237,16 +237,16 @@
           <th>Value</th>
         </tr>
         <tr>
-          <td>Surname:</td>
-          <td>Doe</td>
+          <td>First name:</td>
+          <td th:text="${user.firstname}"></td>
         </tr>
         <tr>
-          <td>Age:</td>
-          <td>30</td>
+          <td>Last name:</td>
+          <td th:text="${user.lastname}"></td>
         </tr>
         <tr>
           <td>Level:</td>
-          <td>Advanced</td>
+          <td th:text="${user.level}"></td>
         </tr>
         <tr>
           <td>Total Score:</td>
