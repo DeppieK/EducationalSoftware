@@ -32,7 +32,6 @@
             align-items: center;
         }
 
-
         header p {
             font-size: 16px;
             margin-bottom: 10px;
@@ -43,8 +42,9 @@
             position: absolute;
             top: 5px;
             right: 5px;
-            text-align: center; /* Center align the menu */
+            text-align: center;
         }
+
         .menu a {
             display: block;
             color: #333;
@@ -59,11 +59,6 @@
             align-items: center;
         }
 
-        .menu a img {
-            width: 18px;
-            height: 18px;
-            margin-right: 8px;
-        }
 
         .menu a:hover {
             background-color: #999;
@@ -132,277 +127,333 @@
             background-color: #fafafa;
             flex: 1;
             display: flex;
-            justify-content: space-around; /* Adjust spacing between image containers */
-            align-items: center; /* Align items vertically */
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
         }
 
-    .glossary-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-around;
-    }
+        .glossary-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
 
- .glossary-item {
-  width: calc(43.33% - 10px); /* Adjusted width calculation */
-  background-color: #fff;
-  border-radius: 10px;
-  padding: 25px;
-  margin: 10px; /* Adjusted margin */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
+        .glossary-item {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            flex: 1 1 300px;
+            max-width: 100%;
+        }
 
+        .glossary-item h3 {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #007bff;
+        }
 
-    .glossary-item h3 {
-      font-size: 18px;
-      font-weight: bold;
-      margin-bottom: 8px;
-      color: #007bff;
-    }
+        .glossary-item p {
+            font-size: 13px;
+            line-height: 1.6;
+            color: #333;
+        }
 
-    .glossary-item p {
-      font-size: 13px;
-      line-height: 1.6;
-      color: #333;
-    }
+        .glossary-item pre {
+            background-color: #f0f0f0;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
 
-    .glossary-item pre {
-      background-color: #f0f0f0;
-      padding: 2px;
-      border-radius: 5px;
-      overflow-x: auto;
-    }
+        .glossary-item iframe {
+            background-color: #f0f0f0;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+            width: 100%;
+            height: 100px;
+            border: none;
+            margin-top: 10px;
+            display: none;
+        }
 
-    .navigation-buttons {
-      text-align: center;
-      margin-top: 20px;
-    }
+        .navigation-buttons {
+            text-align: center;
+            bottom: 20px;
+            width: 100%;
+        }
 
-    .navigation-buttons button {
-      margin: 0 5px;
-      padding: 10px 20px;
-      background-color: #007bff;
-      color: #fff;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: background-color 0.3s;
-    }
+        .navigation-buttons button {
+            margin: 0 5px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
 
-    .navigation-buttons button:hover {
-      background-color: #0056b3;
-    }
+        .navigation-buttons button:hover {
+            background-color: #0056b3;
+        }
 
-
-
-    footer {
-      background-color: #333;
-      color: #fff;
-      text-align: center;
-      padding: 0px;
-      position: fixed;
-      bottom: 0;
-      width: 100%;
-    }
-  </style>
+        footer {
+            background-color: #b0b0b0;
+            color: #333;
+            text-align: center;
+            padding: 0px;
+            width: 100%;
+            font-size:12px;
+            font-family: 'Roboto', sans-serif;
+            font-weight: 250;
+        }
+    </style>
 </head>
 <body>
-  <header>
-      <h1>HTML-HOLIC</h1>
-      <p>Empowering Developers</p>
-      <div class="menu">
-          <a th:href="@{/profile}"><!--<img src="profile.png" alt="Profile Icon"> -->Profile</a>
-          <a th:href="@{/logout}"><!--<img src="logout.png" alt="Logout Icon"> -->Logout</a>
-      </div>
-  </header>
-  <div class="navbar">
-      <ul>
-          <li><a th:href="@{/homepage}">Home</a></li>
-          <li><a th:href="@{/quizList}">HTML Quizzes</a></li>
-          <li><a th:href="@{/basics}">HTML Basics</a></li>
-          <li><a th:href="@{/forms}">HTML Forms</a></li>
-          <li><a th:href="@{/glossary}">HTML Glossary</a></li>
-      </ul>
-  </div>
-  <main>
-
-    <div class="glossary-container">
-      <div class="glossary-item">
+<header>
+    <h1>HTML-HOLIC</h1>
+    <p>Empowering Developers</p>
+    <div class="menu">
+        <a th:href="@{/profile}"><!--<img src="profile.png" alt="Profile Icon"> -->Profile</a>
+        <a th:href="@{/logout}"><!--<img src="logout.png" alt="Logout Icon"> -->Logout</a>
+    </div>
+</header>
+<div class="navbar">
+    <ul>
+        <li><a th:href="@{/homepage}">Home</a></li>
+        <li><a th:href="@{/quizList}">HTML Quizzes</a></li>
+        <li><a th:href="@{/basics}">HTML Basics</a></li>
+        <li><a th:href="@{/forms}">HTML Forms</a></li>
+        <li><a th:href="@{/glossary}">HTML Glossary</a></li>
+    </ul>
+</div>
+<main>
+<div class="glossary-container">
+    <div class="glossary-item">
         <h3>Line Breaks</h3>
         <p>We can separate lines of text in HTML with the help of the line break tag: <code>&lt;br&gt;</code>.</p>
         <p>For example:</p>
         <pre><code>&lt;h1&gt; My favorite things &lt;/h1&gt;<br>&lt;p&gt;<br>Raindrops on roses &lt;br&gt;<br>Whiskers on kittens &lt;br&gt;<br>Bright copper kettles &lt;br&gt;<br>Warm woolen mittens<br>&lt;/p&gt;<br></code></pre>
-		<button onclick="show()">Show result</button>
+        <button onclick="showResult(this)">Show result</button>
+        <iframe></iframe>
     </div>
 
+    <div class="glossary-item">
+        <h3>Links</h3>
+        <p>To create a link in HTML, we use the anchor tag <code>&lt;a&gt;</code> with the <code>href</code> attribute.</p><p>For example:</p>
+        <pre><code>&lt;a href="https://example.com"&gt;Link Text&lt;/a&gt;</code></pre>
+        <button onclick="showResult(this)">Show result</button>
+        <iframe></iframe>
+        <p>To link the text to a webpage, we add <code>&lt;href=""&gt;</code> along with a uniform Resource Locator (URL) <code>&lt;href&gt;</code> id short for "hypertext reference.</p>
+        <p>For example:</p>
+        <pre><code>&lt;a href="hhtps://html.holic.gr"&gt;<br>Learn to Code<br>&lt;/a&gt;</code></pre>
+        <button onclick="showResult(this)">Show result</button>
+        <iframe></iframe>
+    </div>
+
+    <div class="glossary-item">
+        <h3>Attributes</h3>
+        <p><code>&lt;href&gt;</code> is an attribute. All attributes have two things in common: they provide extra information and they go inside the opening tag. <br> Attributes are added after the name of the tag, and before the > closing sign.</p>
+        <p>For example:</p>
+        <pre><code>&lt;a href="hhtps://html.holic.gr"&gt;<br>Learn to Code<br>&lt;/a&gt;</code></pre>
+        <button onclick="showResult(this)">Show result</button>
+        <iframe></iframe>
+    </div>
+
+    <div class="glossary-item">
+        <h3>Whitespace</h3>
+        <p>Whitespace refers to any part of the document that is not taken up by tags or content. This includes spaces, tabs, and blank lines.<br> The browser ignores any whitespace within an HTML document. Whitespace makes code easier to read while not changing how the document is displayed to the user.</p>
+        <p>For example:</p>
+        <pre><code>&lt;p&gt;<br>Whitespace makes code easier to read!<br>&lt;/p&gt;</code></pre>
+        <button onclick="showResult(this)">Show result</button>
+        <iframe></iframe>
+    </div>
+
+    <div class="glossary-item">
+        <h3>Comment</h3>
+        <p>Comments in HTML are added with the <code>&lt;!-- --&gt;</code> tag and can be used to explain the code, which can be helpful when working in a team.</p>
+        <p>For example:</p>
+        <pre><code>&lt;p&gt;<br>&lt;!-- This is a comment --&gt;<br>Comments are not displayed in the browser.<br>&lt;/p&gt;</code></pre>
+        <button onclick="showResult(this)">Show result</button>
+        <iframe></iframe>
+    </div>
+
+    <div class="glossary-item">
+        <h3>Video</h3>
+        <p>The video element allows us to embed a video in an HTML document. It requires a source file and optional attributes to control playback.</p>
+        <p>For example:</p>
+        <pre><code>&lt;video width="120" height="80" controls&gt;<br>&lt;source src="movie.mp4" type="video/mp4"&gt;<br>Your browser does not support the video tag.<br>&lt;/video&gt;</code></pre>
+        <button onclick="showResult(this)">Show result</button>
+        <iframe></iframe>
+    </div>
 
 
     <div class="glossary-item">
         <h3>Links</h3>
         <p>To create a link in HTML, we use the anchor tag <code>&lt;a&gt;</code> with the <code>href</code> attribute.</p><p>For example:</p>
         <pre><code>&lt;a href="https://example.com"&gt;Link Text&lt;/a&gt;</code></pre>
-				<button onclick="show()">Show result</button>
-
-		<p>To link the text to a webpage, we add <code>&lt;href=""&gt;</code> along with a uniform Resource Locator (URL) <code>&lt;href&gt;</code> id short for "hypertext reference.</p>
-		<p>For example:</p>
-		<pre><code>&lt;a href="hhtps://html.holic.gr"&gt;<br>Learn to Code<br>&lt;/a&gt;</code></pre>
-		<button onclick="show()">Show result</button>
-
+        <button onclick="showResult(this)">Show result</button>
+        <iframe></iframe>
+        <p>To link the text to a webpage, we add <code>&lt;href=""&gt;</code> along with a uniform Resource Locator (URL) <code>&lt;href&gt;</code> id short for "hypertext reference.</p>
+        <p>For example:</p>
+        <pre><code>&lt;a href="hhtps://html.holic.gr"&gt;<br>Learn to Code<br>&lt;/a&gt;</code></pre>
+        <button onclick="showResult(this)">Show result</button>
+        <iframe></iframe>
     </div>
 
-	<div class="glossary-item">
+    <div class="glossary-item">
         <h3>Attributes</h3>
         <p><code>&lt;href&gt;</code> is an attribute. All attributes have two things in common: they provide extra information and they go inside the opening tag. <br>	Attrobutes are added after the name of the tag, and before the > closing sign.</p>
-		<p>For example:</p>
-		<pre><code>&lt;a href="hhtps://html.holic.gr"&gt;<br>Learn to Code<br>&lt;/a&gt;</code></pre>
-		<button onclick="show()">Show result</button>
+        <p>For example:</p>
+        <pre><code>&lt;a href="hhtps://html.holic.gr"&gt;<br>Learn to Code<br>&lt;/a&gt;</code></pre>
+        <button onclick="showResult(this)">Show result</button>
+        <iframe></iframe>        </div>
 
-    </div>
-	  
-	<div class="glossary-item">
+    <div class="glossary-item">
         <h3>Images</h3>
         <p>To add image to a website, we start with <code>&lt;img&gt;</code> tag.</p>
-		<p>Just like &lt;br&gt;, &lt;img&gt; is an empty tag. That means it has no closing tag.</p>
-		<p>To display an image, an image tag needs the &lt;src&gt; attribute. &lt;src&gt; stands for source.</p>
+        <p>Just like &lt;br&gt;, &lt;img&gt; is an empty tag. That means it has no closing tag.</p>
+        <p>To display an image, an image tag needs the &lt;src&gt; attribute. &lt;src&gt; stands for source.</p>
         <p>For example:</p>
         <pre><code>&lt;h3&gt;Drawing of<br>&lt;em&gt; Earthrises &lt;/em&gt; <br>&lt;/h3&gt;<br>&lt;img src="https://html.holic.gr/app.png"&gt;<br></code></pre>
-    	<button onclick="show()">Show result</button>
-	</div>  
-	  
-	<div class="glossary-item">
+        <button onClick="showResult(this)">Show result</button>
+        <iframe></iframe>
+    </div>
+
+    <div class="glossary-item">
         <h3>Including JavaScript</h3>
         <p>To add JavaScript code to a webpage, we start with the <code>&lt;script&gt;</code> and <code>&lt;/script&gt;</code> tags.</p>
-		<p>The &lt;script&gt; element is the last element before the closing &lt;/body&gt; tag in the HTML structure. </p>
-		<p>In the JS file, we can write JavaScript like &lt;const username = "Lee"&gt; </p>
+        <p>The &lt;script&gt; element is the last element before the closing &lt;/body&gt; tag in the HTML structure. </p>
+        <p>In the JS file, we can write JavaScript like &lt;const username = "Lee"&gt; </p>
         <p>For example:</p>
         <pre><code><b>index.html</b><br>&lt;body&gt; <br>&lt;h3&gt;Tweeter&lt;/h3&gt;<br>&lt;script src="script.js"&gt;&lt;/script&gt;<br>&lt;/body&gt;<br></code></pre>
         <pre><code><b>script.js</b><br>const username= "Lee";</code></pre>
-		<button onclick="show()">Show result</button>
-	</div> 
-	
-	<div class="glossary-item">
+        <button onclick="showResult(this)">Show result</button>
+        <iframe></iframe>
+    </div>
+
+    <div class="glossary-item">
         <h3>Buttons</h3>
         <p>To create a button users can click on, we need the opening <code>&lt;button&gt;</code> and closing <code>&lt;/button&gt;</code> tags.</p>
-		<p>For example:</p>
-		<pre><code>&lt;body&gt;<br>&lt;p&gt; Subscribe to our Newsletter &lt;/p&gt; <br>&lt;button&gt; Subscribe &lt;/button&gt;<br>&lt;/body&gt;</code></pre>
-		<p>We can make texts appear on a button by typing them between the tags.</p>
         <p>For example:</p>
-		<pre><code>&lt;body&gt;<br>&lt;h1&gt; Facebook&lt;/h1&gt;<br>&lt;p&gt; Log in to your account to get started &lt;/p&gt;<br>&lt;button&gt; Login &lt;/button&gt;<br>&lt;/body&gt;</code></pre>
-    	<button onclick="show()">Show result</button>
-	</div>  
-	  
-	<div class="glossary-item">
+        <pre><code>&lt;body&gt;<br>&lt;p&gt; Subscribe to our Newsletter &lt;/p&gt; <br>&lt;button&gt; Subscribe &lt;/button&gt;<br>&lt;/body&gt;</code></pre>
+        <p>We can make texts appear on a button by typing them between the tags.</p>
+        <p>For example:</p>
+        <pre><code>&lt;body&gt;<br>&lt;h1&gt; Facebook&lt;/h1&gt;<br>&lt;p&gt; Log in to your account to get started &lt;/p&gt;<br>&lt;button&gt; Login &lt;/button&gt;<br>&lt;/body&gt;</code></pre>
+        <button onclick="showResult(this)">Show result</button>
+        <iframe></iframe>
+    </div>
+
+    <div class="glossary-item">
         <h3>Input Elements</h3>
         <p>We create input elements using the empty <code>&lt;input&gt;</code> tag.</p>
-		<p>For example:</p>
-		<pre><code>&lt;body&gt;<br>&lt;h4&gt; Sign up &lt;/h4&gt; <br>&lt;input/&gt;<br>&lt;/body&gt;</code></pre>
-		<p>The default value for type is <code>&lt;text&gt;</code> which lets users enter in text they can see.</p>
         <p>For example:</p>
-		<pre><code>&lt;body&gt;<br>&lt;h4&gt; Sign up &lt;/h4&gt;<br>&lt;input type="text" placeholder="Email"&gt; &lt;br&gt;<br>&lt;input type="password" placeholder="Password"&gt; &lt;/body&gt;
-		<button onclick="show()">Show result</button>
+        <pre><code>&lt;body&gt;<br>&lt;h4&gt; Sign up &lt;/h4&gt; <br>&lt;input/&gt;<br>&lt;/body&gt;</code></pre>
+        <p>The default value for type is <code>&lt;text&gt;</code> which lets users enter in text they can see.</p>
+        <p>For example:</p>
+        <pre><code>&lt;body&gt;<br>&lt;h4&gt; Sign up &lt;/h4&gt;<br>&lt;input type="text" placeholder="Email"&gt; &lt;br&gt;<br>&lt;input type="password" placeholder="Password"&gt; &lt;/body&gt;</code></pre>
+        <button onClick="showResult(this)">Show result</button>
+        <iframe></iframe>
+    </div>
 
-	  
-	<div class="glossary-item">
+
+    <div class="glossary-item">
         <h3>Divs</h3>
         <p>We create a group of elements, we surround the elements with <code>&lt;div&gt;</code> and <code>&lt;/div&gt;</code> tags.</p>
-		<p>For example:</p>
-		<pre><code>&lt;body&gt;<br>&lt;div&gt;<br>&lt;h3&gt; Latest News &lt;/h3&gt; <br>&lt;h1&gt; Where VC's are investing in Fintech &lt;/h1&gt;<br>&lt;p&gt; Arman&lt;/p&gt;<br>&lt;/div&gt;<br>&lt;/body&gt;</code></pre>
-		<button onclick="show()">Show result</button>
-	</div>    
-	  
-	<div class="glossary-item">
+        <p>For example:</p>
+        <pre><code>&lt;body&gt;<br>&lt;div&gt;<br>&lt;h3&gt; Latest News &lt;/h3&gt; <br>&lt;h1&gt; Where VC's are investing in Fintech &lt;/h1&gt;<br>&lt;p&gt; Arman&lt;/p&gt;<br>&lt;/div&gt;<br>&lt;/body&gt;</code></pre>
+        <button onclick="showResult(this)">Show result</button>
+        <iframe></iframe>
+    </div>
+
+    <div class="glossary-item">
         <h3>Ordered Lists</h3>
         <p>An ordered list is made out of <code>&lt;ol&gt;</code> and <code>&lt;/ol&gt;</code> tags.The letter O stands for "ordered" and the letter L stands for "list".</p>
-		<p>For example:</p>
-		<pre><code>&lt;body&gt;<br>&lt;ol&gt;&lt;/ol&gt;<br>&lt;/body&gt;</code></pre>
-		<p>To add a list item, we add text between the <code>&lt;li&gt;</code> and <code>&lt;/li&gt;</code> tags.In this case the L stands for "list" and the I stands for "item".</p>
-		<p>For example:</p>
-		<pre><code>&lt;body&gt;<br>&lt;ol&gt;<br>&lt;li&gt;Tortoise&lt;/il&gt;<br>&lt;/ol&gt;<br>&lt;/body&gt;</code></pre>
-	    <button onclick="show()">Show result</button>
-</div>    
-	    
-	<div class="glossary-item">
+        <p>For example:</p>
+        <pre><code>&lt;body&gt;<br>&lt;ol&gt;&lt;/ol&gt;<br>&lt;/body&gt;</code></pre>
+        <p>To add a list item, we add text between the <code>&lt;li&gt;</code> and <code>&lt;/li&gt;</code> tags.In this case the L stands for "list" and the I stands for "item".</p>
+        <p>For example:</p>
+        <pre><code>&lt;body&gt;<br>&lt;ol&gt;<br>&lt;li&gt;Tortoise&lt;/il&gt;<br>&lt;/ol&gt;<br>&lt;/body&gt;</code></pre>
+        <button onclick="showResult(this)">Show result</button>
+        <iframe></iframe>
+    </div>
+
+    <div class="glossary-item">
         <h3>Unordered Lists</h3>
         <p>To create an unordered list, we use the <code>&lt;ul&gt;</code> and <code>&lt;/ul&gt;</code> tags.The letter U stands for "unordered" and the letter L stands for "list".</p>
-		<p>For example:</p>
-		<pre><code>&lt;body&gt;<br>&lt;ul&gt;&lt;/ul&gt;<br>&lt;/body&gt;</code></pre>
-		<p>To add a list item, we add text between the <code>&lt;li&gt;</code> and <code>&lt;/li&gt;</code> tags.In this case the L stands for "list" and the I stands for "item".</p>
-		<p>For example:</p>
-		<pre><code>&lt;body&gt;<br>&lt;ol&gt;<br>&lt;li&gt;Home&lt;/il&gt;<br>&lt;li&gt;About&lt;/il&gt;<br>&lt;li&gt;Contact&lt;/il&gt;<br>&lt;/ol&gt;<br>&lt;/body&gt;</code></pre>
-		<button onclick="show()">Show result</button>
-	</div> 
-	
-	<div class="glossary-item">
+        <p>For example:</p>
+        <pre><code>&lt;body&gt;<br>&lt;ul&gt;&lt;/ul&gt;<br>&lt;/body&gt;</code></pre>
+        <p>To add a list item, we add text between the <code>&lt;li&gt;</code> and <code>&lt;/li&gt;</code> tags.In this case the L stands for "list" and the I stands for "item".</p>
+        <p>For example:</p>
+        <pre><code>&lt;body&gt;<br>&lt;ol&gt;<br>&lt;li&gt;Home&lt;/il&gt;<br>&lt;li&gt;About&lt;/il&gt;<br>&lt;li&gt;Contact&lt;/il&gt;<br>&lt;/ol&gt;<br>&lt;/body&gt;</code></pre>
+        <button onClick="showResult(this)">Show result</button>
+        <iframe></iframe>
+    </div>
+
+    <div class="glossary-item">
         <h3>Linking Local webpages</h3>
-        <p>We can access locan webpages like trail.html by adding <code>&lt;/&gt;</code> before the file name, just like locan images.</p>
-		<p>For example:</p>
+        <p>We can access local webpages like trail.html by adding <code>&lt;/&gt;</code> before the file name, just like locan images.</p>
+        <p>For example:</p>
         <pre><code><b>index.html</b><br>&lt;body&gt;<br>&lt;h5&gt; History of the American Pioneers&lt;/h5&gt; <br>&lt;a href="/trail.html&gt;<br>Follow the <br> &lt;strong&gt; trail &lt;/strong&gt;<br> by clicking here &lt;/a&gt;<br>&lt;/body&gt;</code></pre>
-		<button onclick="show()">Show result</button>
-	</div>
-
+        <button onclick="showResult(this)">Show result</button>
+        <iframe></iframe>
     </div>
+</div>
+&nbsp;
     <div class="navigation-buttons">
-      <button onclick="previous()">Previous</button>
-      <button onclick="next()">Next</button>
+        <button onclick="prevPage()">Previous</button>
+        <button onclick="nextPage()">Next</button>
     </div>
-      </div>
-  </main>
-  <footer>
-      <p>&copy; 2024 Html-holic by Unipi Informatics Students</p>
-  </footer>
+</main>
 
-  <script>
-    let currentIndex = 0;
-    const glossaryItems = document.querySelectorAll('.glossary-item');
+<footer>
+    <p>&copy; 2024 Html-holic by Unipi Informatics Students</p>
+</footer>
+<script>
+    const itemsPerPage = 2;
+    let currentPage = 1;
 
-    function showItems(startIndex) {
-      glossaryItems.forEach((item, index) => {
-        if (index >= startIndex && index < startIndex + 2) {
-          item.style.display = 'block';
-        } else {
-          item.style.display = 'none';
+    function showResult(button) {
+        const iframe = button.nextElementSibling;
+        const code = button.previousElementSibling.textContent;
+        iframe.style.display = 'block';
+        iframe.srcdoc = code;
+    }
+
+    function displayPage(page) {
+        const glossaryItems = document.querySelectorAll('.glossary-item');
+        glossaryItems.forEach((item, index) => {
+            if (index >= (page - 1) * itemsPerPage && index < page * itemsPerPage) {
+                item.style.display = 'block';
+            } else {
+                item.style.display = 'none';
+            }
+        });
+    }
+
+    function nextPage() {
+        const glossaryItems = document.querySelectorAll('.glossary-item');
+        if (currentPage * itemsPerPage < glossaryItems.length) {
+            currentPage++;
+            displayPage(currentPage);
         }
-      });
     }
 
-    function next() {
-      currentIndex += 2;
-      if (currentIndex >= glossaryItems.length) {
-        currentIndex = 0;
-      }
-      showItems(currentIndex);
+    function prevPage() {
+        if (currentPage > 1) {
+            currentPage--;
+            displayPage(currentPage);
+        }
     }
 
-    function previous() {
-      currentIndex -= 2;
-      if (currentIndex < 0) {
-        currentIndex = Math.floor((glossaryItems.length - 1) / 2) * 2;
-      }
-      showItems(currentIndex);
-    }
-
-    // Show the first set of items initially
-    showItems(currentIndex);
-
-	function show() {
-    const glossaryItem = document.querySelector('.glossary-item:first-child');
-    const resultDiv = glossaryItem.querySelector('.result-div');
-
-    // If resultDiv exists, remove it; otherwise, add it
-    if (resultDiv) {
-      resultDiv.remove();
-    } else {
-      const newResultDiv = document.createElement('div');
-      newResultDiv.className = 'result-div';
-      newResultDiv.innerHTML = `<h1>My favorite things</h1>
-                                 <p>Raindrops on roses <br>
-                                 Whiskers on kittens <br>
-                                 Bright copper kettles <br>
-                                 Warm woolen mittens</p>`;
-      glossaryItem.appendChild(newResultDiv);
-    }
-  }
-
-
-  </script>
+    displayPage(currentPage);
+</script>
 </body>
 </html>

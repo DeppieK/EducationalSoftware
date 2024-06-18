@@ -5,52 +5,167 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HTML-HOLIC: Introduction to HTML</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        html, body {
+            height: 100%;
             margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            background-color: #f8f8f8;
-            min-height: 100vh;
-            position: relative; /* Ensure footer doesn't overlap content */
+            display: flex;
+            flex-direction: column;
+            font-family: 'Roboto', sans-serif;
+            background-color: #e0e0e0;
         }
 
         header {
-            background-color: #007bff;
-            color: #fff;
-            padding: 15px;
-            text-align: center;
+            background-color: #c0c0c0;
+            color: #333;
+            padding: 5px;
+            text-align: left;
+            position: relative;
+            font-family: 'Montserrat', sans-serif;
         }
 
         header h1 {
-            font-size: 40px;
-            margin-bottom: 10px;
+            font-size: 26px;
+            margin-bottom: 3px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
         }
 
+
         header p {
-            font-size: 18px;
-            margin-bottom: 20px;
+            font-size: 16px;
+            margin-bottom: 10px;
+            font-weight: 400;
+        }
+
+        .menu {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            text-align: center; /* Center align the menu */
+        }
+        .menu a {
+            display: block;
+            color: #333;
+            text-decoration: none;
+            margin: 3px 0;
+            padding: 8px;
+            background-color: #fff;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+            font-weight: 400;
+            display: flex;
+            align-items: center;
+        }
+
+        .menu a img {
+            width: 18px;
+            height: 18px;
+            margin-right: 8px;
+        }
+
+        .menu a:hover {
+            background-color: #999;
+            color: #fff;
+            cursor:pointer;
+        }
+
+        .navbar {
+            background-color: #b0b0b0;
+            overflow: auto;
+        }
+
+        .navbar ul {
+            padding: 0;
+            margin: 0;
+            list-style-type: none;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .navbar ul li {
+            position: relative;
+        }
+
+        .navbar ul li a {
+            display: block;
+            padding: 12px 12px;
+            color: #333;
+            text-decoration: none;
+            transition: background-color 0.3s, color 0.3s;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+        }
+
+        .navbar ul li a:hover {
+            background-color: #999;
+        }
+
+        .navbar ul li ul {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #b0b0b0;
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            min-width: 200px;
+            z-index: 1000;
+        }
+
+        .navbar ul li ul li {
+            display: block;
+        }
+
+        .navbar ul li ul li a {
+            padding: 6px 10px;
+            font-weight: 360;
+        }
+
+        .navbar ul li:hover ul {
+            display: block;
         }
 
         main {
             padding: 20px;
-            padding-bottom: 70px; /* Adjust for footer height */
+            background-color: #fafafa;
+            flex: 1;
+            display: flex;
+            justify-content: space-around; /* Adjust spacing between image containers */
+            align-items: center; /* Align items vertically */
         }
 
-        main h2 {
-            color: #007bff;
-            font-size: 24px;
-            margin-bottom: 10px;
+
+        .image-container {
+            margin-top: 20px;
             text-align: center;
+            margin:13px;
         }
 
-        main p {
-            font-size: 16px;
-            line-height: 1.6;
-            text-align: left;
-            margin-bottom: 20px;
+        .image-container img {
+            max-width: 100px; /* Adjust as needed */
+            height: auto;
+
         }
 
+        .image-container p {
+            margin-top: 10px;
+            font-size: 17px;
+            color: #333;
+            margin: 25px;
+        }
+
+        footer {
+            background-color: #b0b0b0;
+            color: #333;
+            text-align: center;
+            padding: 0px;
+            width: 100%;
+            font-size:12px;
+            font-family: 'Roboto', sans-serif;
+            font-weight: 250;
+        }
         .quiz {
             padding: 20px;
             border-radius: 5px;
@@ -81,13 +196,14 @@
         }
 
         footer {
-            background-color: #333;
-            color: #fff;
+            background-color: #b0b0b0;
+            color: #333;
             text-align: center;
-            padding: 10px;
-            position: absolute;
-            bottom: 0;
+            padding: 0px;
             width: 100%;
+            font-size:12px;
+            font-family: 'Roboto', sans-serif;
+            font-weight: 250;
         }
         .href{
             text-decoration: none;
@@ -123,7 +239,7 @@
 
 </main>
 <footer>
-    <p>HTML-HOLIC &copy; 2024</p>
+    <p>&copy; 2024 Html-holic by Unipi Informatics Students</p>
 </footer>
 
 </body>

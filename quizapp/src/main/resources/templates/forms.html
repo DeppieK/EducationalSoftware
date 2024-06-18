@@ -161,10 +161,11 @@
             background-color: #b0b0b0;
             color: #333;
             text-align: center;
-            padding: 5px;
+            padding: 0px;
             width: 100%;
+            font-size:12px;
             font-family: 'Roboto', sans-serif;
-            font-weight: 400;
+            font-weight: 250;
         }
     </style>
 </head>
@@ -179,6 +180,7 @@
 </header>
 <div class="navbar">
     <ul>
+        <li><a th:href="@{/homepage}">HTML Quizzes</a></li>
         <li><a th:href="@{/quizList}">HTML Quizzes</a></li>
         <li><a th:href="@{/basics}">HTML Basics</a></li>
         <li><a th:href="@{/forms}">HTML Forms</a></li>
