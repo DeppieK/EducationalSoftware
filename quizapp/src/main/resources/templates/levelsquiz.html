@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HTML-HOLIC</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@300;400&display=swap">
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      font-family: 'Roboto', sans-serif;
+      background-color: #e0e0e0;
+    }
+
+    header {
+      background-color: #c0c0c0;
+      color: #333;
+      padding: 5px;
+      text-align: left;
+      position: relative;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    header h1 {
+      font-size: 26px;
+      margin-bottom: 3px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+    }
+
+
+    header p {
+      font-size: 16px;
+      margin-bottom: 10px;
+      font-weight: 400;
+    }
+
+    .menu {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      text-align: center; /* Center align the menu */
+    }
+    .menu a {
+      color: #333;
+      text-decoration: none;
+      margin: 3px 0;
+      padding: 8px;
+      background-color: #fff;
+      border-radius: 5px;
+      transition: background-color 0.3s, color 0.3s;
+      font-weight: 400;
+      display: flex;
+      align-items: center;
+    }
+
+
+    .menu a:hover {
+      background-color: #999;
+      color: #fff;
+      cursor:pointer;
+    }
+
+    .navbar {
+      background-color: #b0b0b0;
+    }
+
+    .navbar ul {
+      padding: 0;
+      margin: 0;
+      list-style-type: none;
+      display: flex;
+      justify-content: space-around;
+    }
+
+    .navbar ul li {
+      position: relative;
+    }
+
+    .navbar ul li a {
+      display: block;
+      padding: 12px 12px;
+      color: #333;
+      text-decoration: none;
+      transition: background-color 0.3s, color 0.3s;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+    }
+
+    .navbar ul li a:hover {
+      background-color: #999;
+    }
+
+    .navbar ul li ul {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background-color: #b0b0b0;
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+      min-width: 200px;
+      z-index: 1000;
+    }
+
+    .navbar ul li ul li {
+      display: block;
+    }
+
+    .navbar ul li ul li a {
+      padding: 6px 10px;
+      font-weight: 360;
+    }
+
+    .navbar ul li:hover ul {
+      display: block;
+    }
+
+    main {
+      padding: 20px;
+      background-color: #fafafa;
+      flex: 1;
+      display: flex;
+      justify-content: space-around; /* Adjust spacing between image containers */
+      align-items: center; /* Align items vertically */
+    }
+
+
+    footer {
+      background-color: #b0b0b0;
+      color: #333;
+      text-align: center;
+      padding: 0px;
+      width: 100%;
+      font-size:12px;
+      font-family: 'Roboto', sans-serif;
+      font-weight: 250;
+    }
+
+    .quiz {
+      background-color: #fff;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      margin-bottom: 15px;
+      width: 90%;
+      max-width: 650px;
+    }
+
+    .question {
+      font-size: 15px;
+      margin-bottom: 10px;
+      font-weight: 800;
+    }
+
+    .options {
+      margin-bottom: 10px;
+    }
+
+    .options label {
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .options input {
+      margin-right: 5px;
+    }
+
+    .submit-btn {
+      background-color: #333;
+      color: #fff;
+      border: none;
+      padding: 6px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: background-color 0.3s;
+      text-align: center;
+    }
+
+    .submit-btn:hover {
+      background-color: #555;
+    }
+  </style>
+</head>
+<body>
+<header>
+  <h1>HTML-HOLIC</h1>
+  <p>Empowering Developers</p>
+  <div class="menu">
+    <a th:href="@{/profile}"><!--<img src="profile.png" alt="Profile Icon"> -->Profile</a>
+    <a th:href="@{/logout}"><!--<img src="logout.png" alt="Logout Icon"> -->Logout</a>
+  </div>
+</header>
+<div class="navbar">
+  <ul>
+    <li><a th:href="@{/homepage}">Home</a></li>
+    <li><a th:href="@{/quizList}">HTML Quizzes</a></li>
+    <li><a th:href="@{/basics}">HTML Basics</a></li>
+    <li><a th:href="@{/forms}">HTML Forms</a></li>
+    <li><a th:href="@{/glossary}">HTML Glossary</a></li>
+  </ul>
+</div>
+
+<main>
+  <div class="quiz">
+    <b>Hello, <h5 th:text="${user.username}"></h5> this is a short quiz so we can see your knowledge's level in HTML and rank ypu in a certain level so you can take the appropriate theory and tests based on this.
+  </b><br>&nbsp;
+  <div class="question">1. What does HTML stand for?</div>
+  <div class="options">
+    <label><input type="radio" name="q1" value="A">  Hyper Trainer Marking Language</label>
+    <label><input type="radio" name="q1" value="B">  Hyper Text Markup Language</label>
+    <label><input type="radio" name="q1" value="C">  Hyper Text Marketing Language</label>
+    <label><input type="radio" name="q1" value="D">  Hyper Tool Markup Language</label>
+  </div>
+  &nbsp;
+  <div class="question">2. What is the main purpose of HTML?</div>
+  <div class="options">
+    <label><input type="radio" name="q2" value="A">  To create desktop applications</label>
+    <label><input type="radio" name="q2" value="B">  To structure web content</label>
+    <label><input type="radio" name="q2" value="C">  To design mobile apps</label>
+    <label><input type="radio" name="q2" value="D">  To edit images</label>
+  </div>
+  &nbsp;
+  <div class="question">3. Which tag is used to create a hyperlink in HTML?</div>
+  <div class="options">
+    <label><input type="radio" name="q3" value="A">  &lt;a&gt;</label>
+    <label><input type="radio" name="q3" value="B">  &lt;link&gt;</label>
+    <label><input type="radio" name="q3" value="C">  &lt;href&gt;</label>
+    <label><input type="radio" name="q3" value="D">  &lt;hyperlink&gt;</label>
+  </div>
+  &nbsp;
+  <div class="question">4. Which attribute is used to specify a unique identifier for an HTML element?</div>
+  <div class="options">
+    <label><input type="radio" name="q4" value="A">  &lt;break&gt;</label>
+    <label><input type="radio" name="q4" value="B">  &lt;lb&gt;</label>
+    <label><input type="radio" name="q4" value="C">  &lt;br&gt;</label>
+    <label><input type="radio" name="q4" value="D">  &lt;ln&gt;</label>
+  </div>
+  &nbsp;
+  <div class="question">5. Which attribute is used to specify a unique identifier for an HTML element?</div>
+  <div class="options">
+    <label><input type="radio" name="q4" value="A">  id</label>
+    <label><input type="radio" name="q4" value="B">  class</label>
+    <label><input type="radio" name="q4" value="C">  name</label>
+    <label><input type="radio" name="q4" value="D">  style</label>
+  </div>
+  &nbsp;
+  <div class="question">5. Which HTML tag is used to define an ordered list?</div>
+  <div class="options">
+    <label><input type="radio" name="q5" value="A">  &lt;ul&gt;</label>
+    <label><input type="radio" name="q5" value="B">  &lt;ol&gt;</label>
+    <label><input type="radio" name="q5" value="C">  &lt;orderedlist&gt;</label>
+    <label><input type="radio" name="q5" value="D">  &lt;list&gt;</label>
+  </div>
+  &nbsp;
+  <div class="question">6. Which HTML tag is used to define an unordered list that is bulleted?</div>
+  <div class="options">
+    <label><input type="radio" name="q5" value="A">  &lt;ul&gt;</label>
+    <label><input type="radio" name="q5" value="B">  &lt;ol&gt;</label>
+    <label><input type="radio" name="q5" value="C">  &lt;li&gt;</label>
+    <label><input type="radio" name="q5" value="D">  &lt;list&gt;</label>
+  </div>
+  &nbsp;
+  <div class="question">7. Which attribute is used to provide a unique identifies to an HTML element?</div>
+  <div class="options">
+    <label><input type="radio" name="q5" value="A">  &lt;class&gt;</label>
+    <label><input type="radio" name="q5" value="B">  &lt;id&gt;</label>
+    <label><input type="radio" name="q5" value="C">  &lt;name&gt;</label>
+    <label><input type="radio" name="q5" value="D">  &lt;style&gt;</label>
+  </div>
+  &nbsp;
+  <div class="question">8. How do you add a comment in HTML?</div>
+  <div class="options">
+    <label><input type="radio" name="q5" value="A">  &lt;!-- This is a comment--&gt;</label>
+    <label><input type="radio" name="q5" value="B">  &lt;//This is a comment&gt;</label>
+    <label><input type="radio" name="q5" value="C">  &lt;/*This is a comment*/&gt;</label>
+    <label><input type="radio" name="q5" value="D">  &lt;#This is a comment&gt;</label>
+  </div>
+  &nbsp;
+  <div class="question">9. Which HTML element is used to create a form?</div>
+  <div class="options">
+    <label><input type="radio" name="q4" value="A">  &lt;form&gt;</label>
+    <label><input type="radio" name="q4" value="B">  &lt;input&gt;</label>
+    <label><input type="radio" name="q4" value="C">  &lt;table&gt;</label>
+    <label><input type="radio" name="q4" value="D">  &lt;div&gt;</label>
+  </div>
+  &nbsp;
+  <div class="question">10. What is the correct attribute to specify the URL where the form data should be sent?</div>
+  <div class="options">
+    <label><input type="radio" name="q4" value="A">  &lt;href&gt;</label>
+    <label><input type="radio" name="q4" value="B">  &lt;src&gt;</label>
+    <label><input type="radio" name="q4" value="C">  &lt;action&gt;</label>
+    <label><input type="radio" name="q4" value="D">  &lt;method&gt;</label>
+  </div>
+&nbsp;
+  <button class="submit-btn">Submit Quiz</button>
+</div>
+</main>
+
+<footer>
+  <p>&copy; 2024 Html-holic by Unipi Informatics Students</p>
+</footer>
+</body>
+</html>

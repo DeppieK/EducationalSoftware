@@ -98,6 +98,10 @@ public class UserController {
         return "basics";
     }
 
+    @GetMapping("/levelstest")
+    public String levelstast(Model model) {
+        return "levels";
+    }
     @GetMapping("/forms")
     public String forms(Model model) {
         return "forms";
