@@ -251,7 +251,7 @@
         <h2>Your Attempts</h2>
         <ul>
             <li th:each="attempt : ${userAttempts}">
-                Attempt [[${attempt.attemptNumber}]]:
+                Attempt: [[${attempt.attemptNumber}]]/3
                 Score: <span th:text="${attempt.score}"></span>
                 Status: <span th:text="${attempt.status}"></span>
             </li>
