@@ -167,6 +167,10 @@
             font-family: 'Roboto', sans-serif;
             font-weight: 250;
         }
+        img {
+                     height:15px;
+                     width:15px;
+                 }
     </style>
 </head>
 <body>
@@ -174,8 +178,12 @@
     <h1>HTML-HOLIC</h1>
     <p>Empowering Developers</p>
     <div class="menu">
-        <a th:href="@{/profile}"><!--<img src="profile.png" alt="Profile Icon"> -->Profile</a>
-        <a th:href="@{/logout}"><!--<img src="logout.png" alt="Logout Icon"> -->Logout</a>
+        <a th:href="@{/profile}">
+            <img src="/profile.png" alt="Profile Icon"> Profile
+        </a>
+        <a th:href="@{/logout}">
+            <img src="/logout.png" alt="Logout Icon"> Logout
+        </a>
     </div>
 </header>
 <div class="navbar">

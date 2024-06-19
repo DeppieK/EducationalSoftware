@@ -167,6 +167,10 @@
       font-family: 'Roboto', sans-serif;
       font-weight: 250;
     }
+    img {
+      height:15px;
+      width:15px;
+    }
   </style>
 </head>
 <body>
@@ -174,8 +178,12 @@
   <h1>HTML-HOLIC</h1>
   <p>Empowering Developers</p>
   <div class="menu">
-    <a th:href="@{/profile}"><!--<img src="profile.png" alt="Profile Icon"> -->Profile</a>
-    <a th:href="@{/logout}"><!--<img src="logout.png" alt="Logout Icon"> -->Logout</a>
+    <a th:href="@{/profile}">
+      <img src="/profile.png" alt="Profile Icon"> Profile
+    </a>
+    <a th:href="@{/logout}">
+      <img src="/logout.png" alt="Logout Icon"> Logout
+    </a>
   </div>
 </header>
 <div class="navbar">
@@ -188,22 +196,22 @@
 </div>
 <main>
   <div class="image-container">
-    <img src="../static/first.png" alt="Intro Image">
+    <img src="/first.png" alt="Intro Image">
     <p><b>Introduction to HTML</b></p>
     <p>A comprehensive overview of HTML, covering its history, purpose, and basic structure.</p>
   </div>
   <div class="image-container">
-    <img src="../static/second.png" alt="Basics Image">
+    <img src="/second.png" alt="Basics Image">
     <p><b>Basics of HTML</b></p>
     <p>Exploring the fundamental elements and concepts of HTML, including tags, attributes, and syntax.</p>
   </div>
   <div class="image-container">
-    <img src="../static/third.png" alt="Forms Image">
+    <img src="/third.png" alt="Forms Image">
     <p><b>Working with HTML Forms</b></p>
     <p>Learn how to create and customize forms in HTML to collect user input and interact with web servers.</p>
   </div>
   <div class="image-container">
-    <img src="../static/fourth.png" alt="Glossary Image">
+    <img src="/fourth.png" alt="Glossary Image">
     <p><b>HTML Glossary</b></p>
     <p>Discover a comprehensive list of terms and definitions commonly used in HTML development.</p>
   </div>
