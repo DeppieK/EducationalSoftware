@@ -248,6 +248,15 @@
 <main>
     <div class="section">
         <h2 th:text="'Quiz: ' + ${quiz.title}"></h2>
+        <h2>Your Attempts</h2>
+        <ul>
+            <li th:each="attempt : ${userAttempts}">
+                Attempt [[${attempt.attemptNumber}]]:
+                Score: <span th:text="${attempt.score}"></span>
+                Status: <span th:text="${attempt.status}"></span>
+            </li>
+        </ul>
+        <p th:if="${question != null}" th:text="${question.questionText}"></p>
         <div th:each="question : ${questions}" class="question">
             <p th:text="${question.questionText}"></p>
             <ul>
