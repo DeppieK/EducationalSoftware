@@ -2,9 +2,6 @@ package com.quizapp.demo.quiz;
 
 import com.quizapp.demo.question.Question;
 import com.quizapp.demo.question.QuestionRepository;
-import com.quizapp.demo.question.QuestionService;
-import com.quizapp.demo.questionOption.QuestionOption;
-import com.quizapp.demo.questionOption.QuestionOptionService;
 import com.quizapp.demo.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -36,6 +33,6 @@ public class QuizController {
         model.addAttribute("quiz", quiz);
         model.addAttribute("questions", questions);
 
-        return "intro";
+        return "quiz";
     }
 }

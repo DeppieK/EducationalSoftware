@@ -31,7 +31,6 @@
             align-items: center;
         }
 
-
         header p {
             font-size: 16px;
             margin-bottom: 10px;
@@ -42,8 +41,9 @@
             position: absolute;
             top: 5px;
             right: 5px;
-            text-align: center; /* Center align the menu */
+            text-align: center;
         }
+
         .menu a {
             display: block;
             color: #333;
@@ -67,7 +67,7 @@
         .menu a:hover {
             background-color: #999;
             color: #fff;
-            cursor:pointer;
+            cursor: pointer;
         }
 
         .navbar {
@@ -132,21 +132,19 @@
             background-color: #fafafa;
             flex: 1;
             display: flex;
-            justify-content: space-around; /* Adjust spacing between image containers */
-            align-items: center; /* Align items vertically */
+            justify-content: space-around;
+            align-items: center;
         }
-
 
         .image-container {
             margin-top: 20px;
             text-align: center;
-            margin:13px;
+            margin: 13px;
         }
 
         .image-container img {
-            max-width: 100px; /* Adjust as needed */
+            max-width: 100px;
             height: auto;
-
         }
 
         .image-container p {
@@ -162,10 +160,11 @@
             text-align: center;
             padding: 0px;
             width: 100%;
-            font-size:12px;
+            font-size: 12px;
             font-family: 'Roboto', sans-serif;
             font-weight: 250;
         }
+
         .question {
             background-color: #f0f0f0;
             padding: 20px;
@@ -173,7 +172,7 @@
             margin-bottom: 20px;
         }
 
-         h3 {
+        h3 {
             font-size: 20px;
             color: #007bff;
             margin-bottom: 10px;
@@ -181,7 +180,7 @@
 
         .question button {
             display: block;
-            margin: 10px 0; /* Adjust vertical spacing */
+            margin: 10px 0;
             padding: 10px 20px;
             background-color: #007bff;
             color: #fff;
@@ -191,18 +190,36 @@
             transition: background-color 0.3s, transform 0.3s;
         }
 
-        .quiz button:hover {
+        .question button:hover {
             background-color: #0056b3;
             transform: scale(1.05);
         }
 
-
-        ul{
+        ul {
             list-style-type: none;
         }
+
         img {
-            height:15px;
-            width:15px;
+            height: 15px;
+            width: 15px;
+        }
+
+        .disabled {
+            pointer-events: none;
+            opacity: 0.6;
+            background-color: #d3d3d3 !important;
+        }
+
+        .correct-answer {
+            background-color: green !important;
+        }
+
+        .wrong-answer {
+            background-color: red !important;
+        }
+
+        .selected-answer {
+            opacity: 1 !important;
         }
     </style>
 </head>
@@ -236,16 +253,21 @@
             <ul>
                 <li th:each="option : ${question.questionOptions}">
                     <label>
-                        <button th:text="${option.optionText}" th:value="${option.optionText}"></button>
+                        <button th:text="${option.optionText}"
+                                th:value="${option.optionText}"
+                                th:data-correct="${option.isCorrect}"
+                                onclick="checkAnswer(this, this.getAttribute('data-correct'))">
+                        </button>
                     </label>
                 </li>
             </ul>
         </div>
     </div>
+    <!--
     <div class="navigation">
         <button onclick="previousSection()">Previous</button>
         <button onclick="nextSection()">Next</button>
-    </div>
+    </div>-->
 </main>
 <footer>
     <p>HTML-HOLIC &copy; 2024</p>
@@ -274,15 +296,21 @@
         }
     }
 
-    function checkAnswer(button, status) {
-        if (status === 'correct') {
-            button.style.backgroundColor = 'green';
+    function checkAnswer(button, isCorrect) {
+        const buttons = button.closest('ul').querySelectorAll('button');
+        buttons.forEach(btn => {
+            btn.classList.add('disabled');
+            btn.disabled = true; //disable button
+        });
+
+        if (isCorrect === 'true') {
+            button.classList.add('correct-answer');
         } else {
-            button.style.backgroundColor = 'red';
+            button.classList.add('wrong-answer');
         }
-        setTimeout(() => {
-            button.style.backgroundColor = '#007bff';
-        }, 1000);
+
+        button.classList.add('selected-answer'); //add class for selected answer
+
     }
 
     // Show the first section initially

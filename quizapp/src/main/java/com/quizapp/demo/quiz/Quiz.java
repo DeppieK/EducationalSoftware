@@ -30,6 +30,9 @@ public class Quiz {
     @Column(nullable = false)
     private Difficulty difficulty;
 
+    @Column
+    private int label;
+
     // Constructors
     public Quiz() {
     }
@@ -38,10 +41,11 @@ public class Quiz {
         this.quizId = quizId;
     }
 
-    public Quiz(Long quizId, String title, Difficulty difficulty) {
+    public Quiz(Long quizId, String title, Difficulty difficulty, int label) {
         this.quizId = quizId;
         this.title = title;
         this.difficulty = difficulty;
+        this.label = label;
     }
 
     @Override
@@ -50,6 +54,7 @@ public class Quiz {
                 "quizId=" + quizId +
                 ", title='" + title + '\'' +
                 ", difficulty=" + difficulty +
+                ", label=" + label +
                 '}';
     }
 
