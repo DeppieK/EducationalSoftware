@@ -35,10 +35,6 @@ public class Question {
     @Column(name = "question_text", nullable = false, columnDefinition = "TEXT")
     private String questionText;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "question_type", nullable = false)
-    private QuestionType questionType;
-
     @Column(name = "correct_answer", columnDefinition = "TEXT")
     private String correctAnswer;
 
@@ -57,11 +53,10 @@ public class Question {
         this.questionId = questionId;
     }
 
-    public Question(Long questionId, Quiz quiz, String questionText, QuestionType questionType, String correctAnswer, Question alternativeQuestion) {
+    public Question(Long questionId, Quiz quiz, String questionText,String correctAnswer, Question alternativeQuestion) {
         this.questionId = questionId;
         this.quiz = quiz;
         this.questionText = questionText;
-        this.questionType = questionType;
         this.correctAnswer = correctAnswer;
         this.alternativeQuestion = alternativeQuestion;
     }
@@ -72,14 +67,9 @@ public class Question {
                 "questionId=" + questionId +
                 ", quiz=" + quiz +
                 ", questionText='" + questionText + '\'' +
-                ", questionType=" + questionType +
                 ", correctAnswer='" + correctAnswer + '\'' +
                 ", alternativeQuestion=" + alternativeQuestion +
                 '}';
-    }
-
-    public enum QuestionType {
-        MULTIPLE_CHOICE, TRUE_FALSE, SHORT_ANSWER
     }
 
 }

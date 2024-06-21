@@ -33,6 +33,10 @@ public class Quiz {
     @Column
     private int label;
 
+    @Column
+    private String unit;
+
+
     // Constructors
     public Quiz() {
     }
@@ -41,11 +45,12 @@ public class Quiz {
         this.quizId = quizId;
     }
 
-    public Quiz(Long quizId, String title, Difficulty difficulty, int label) {
+    public Quiz(Long quizId, String title, Difficulty difficulty, int label, String unit) {
         this.quizId = quizId;
         this.title = title;
         this.difficulty = difficulty;
         this.label = label;
+        this.unit = unit;
     }
 
     @Override
@@ -55,10 +60,11 @@ public class Quiz {
                 ", title='" + title + '\'' +
                 ", difficulty=" + difficulty +
                 ", label=" + label +
+                ", unit='" + unit + '\'' +
                 '}';
     }
 
     public enum Difficulty {
-        BEGINNER, MEDIUM, INTERMEDIATE
+        BEGINNER, MEDIUM, INTERMEDIATE,NONE
     }
 }

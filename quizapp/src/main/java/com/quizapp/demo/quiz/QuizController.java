@@ -23,7 +23,6 @@ public class QuizController {
     private QuizRepository quizRepository;
     private QuestionRepository questionRepository;
     private UserAttemptRepository userAttemptRepository;
-    @Autowired
     private UserAttempt userAttempt;
 
     public QuizController(UserService userService, QuizRepository quizRepository, QuestionRepository questionRepository, UserAttemptRepository userAttemptRepository) {

@@ -1,7 +1,12 @@
 package com.quizapp.demo.user;
 
+import com.quizapp.demo.question.Question;
+import com.quizapp.demo.question.QuestionRepository;
 import com.quizapp.demo.quiz.Quiz;
+import com.quizapp.demo.quiz.QuizRepository;
 import com.quizapp.demo.quiz.QuizService;
+import com.quizapp.demo.userAttempt.UserAttempt;
+import com.quizapp.demo.userAttempt.UserAttemptRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -13,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.time.LocalDateTime;
+import java.security.Principal;
 import java.util.List;
 
 @Controller
@@ -21,10 +27,14 @@ public class UserController {
     @Autowired
     private UserService userService;
     private QuizService quizService;
+    private QuizRepository quizRepository;
+    private QuestionRepository questionRepository;
 
-    public UserController(UserService userService, QuizService quizService) {
+    public UserController(UserService userService,QuizRepository quizRepository, QuestionRepository questionRepository, QuizService quizService) {
         this.userService = userService;
         this.quizService = quizService;
+        this.quizRepository = quizRepository;
+        this.questionRepository = questionRepository;
     }
 
     @GetMapping("/login")
@@ -61,7 +71,7 @@ public class UserController {
 
         userService.save(user);
 
-        return "redirect:/sign_in";
+        return "redirect:/login";
     }
 
     @GetMapping("/main")
@@ -71,9 +81,29 @@ public class UserController {
     }
 
     @GetMapping("/homepage")
-    public String homepage(Model model) {
-        return "homepage";
+    public String homepage(Model model, Principal principal) {
+        User user = userService.findByUsername(principal.getName());
+
+        // Assuming you have a service or repository to fetch completion counts
+        int completionCount = userService.getCompletionCountForQuizId(user, 3L);
+
+        if (completionCount > 0) {
+            return "homepage";
+        } else {
+
+            Quiz quiz = quizRepository.findById(3L).orElse(null);
+
+            //find the questions for this quiz
+            List<Question> questions = questionRepository.findByQuiz(quiz);
+
+            model.addAttribute("quiz", quiz);
+            model.addAttribute("questions", questions);
+            model.addAttribute("user", user);
+
+            return "levelsquiz";
+        }
     }
+
     @GetMapping("/profile")
     public String profile(Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -99,8 +129,20 @@ public class UserController {
     }
 
     @GetMapping("/levelstest")
-    public String levelstast(Model model) {
-        return "levels";
+    public String levelstast(Model model, Principal principal) {
+        //get the current user
+        User user = userService.findByUsername(principal.getName());
+
+        Quiz quiz = quizRepository.findById(3L).orElse(null);
+
+        //find the questions for this quiz
+        List<Question> questions = questionRepository.findByQuiz(quiz);
+
+        model.addAttribute("quiz", quiz);
+        model.addAttribute("questions", questions);
+        model.addAttribute("user", user);
+
+        return "levelsquiz";
     }
     @GetMapping("/forms")
     public String forms(Model model) {
