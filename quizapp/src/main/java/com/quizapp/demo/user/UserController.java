@@ -1,12 +1,11 @@
 package com.quizapp.demo.user;
 
+import com.quizapp.demo.completion.Completion;
 import com.quizapp.demo.question.Question;
 import com.quizapp.demo.question.QuestionRepository;
 import com.quizapp.demo.quiz.Quiz;
 import com.quizapp.demo.quiz.QuizRepository;
 import com.quizapp.demo.quiz.QuizService;
-import com.quizapp.demo.userAttempt.UserAttempt;
-import com.quizapp.demo.userAttempt.UserAttemptRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -84,7 +83,6 @@ public class UserController {
     public String homepage(Model model, Principal principal) {
         User user = userService.findByUsername(principal.getName());
 
-        // Assuming you have a service or repository to fetch completion counts
         int completionCount = userService.getCompletionCountForQuizId(user, 3L);
 
         if (completionCount > 0) {
@@ -100,8 +98,20 @@ public class UserController {
             model.addAttribute("questions", questions);
             model.addAttribute("user", user);
 
-            return "levelsquiz";
+            return "levelsQuiz";
         }
+    }
+
+    @PostMapping("/homepage")
+    public String submitQuiz(Principal principal) {
+        User user = userService.findByUsername(principal.getName());
+        Quiz quiz = quizRepository.findById(3L).orElse(null);
+
+        //save completion record
+        Completion completion = new Completion(user, quiz, 1);
+        userService.saveCompletion(completion);
+
+        return "homepage";
     }
 
     @GetMapping("/profile")
@@ -128,22 +138,7 @@ public class UserController {
         return "basics";
     }
 
-    @GetMapping("/levelstest")
-    public String levelstast(Model model, Principal principal) {
-        //get the current user
-        User user = userService.findByUsername(principal.getName());
 
-        Quiz quiz = quizRepository.findById(3L).orElse(null);
-
-        //find the questions for this quiz
-        List<Question> questions = questionRepository.findByQuiz(quiz);
-
-        model.addAttribute("quiz", quiz);
-        model.addAttribute("questions", questions);
-        model.addAttribute("user", user);
-
-        return "levelsquiz";
-    }
     @GetMapping("/forms")
     public String forms(Model model) {
         return "forms";

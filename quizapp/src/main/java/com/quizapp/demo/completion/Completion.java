@@ -26,9 +26,9 @@ public class Completion {
     @Column(nullable = false, columnDefinition = "int default 0")
     private int completed;
 
-    // Constructors
+    //constructors
     public Completion() {
-        this.completed = 0; // Set default value
+        this.completed = 0; //set default value
     }
 
     public Completion(User user, Quiz quiz, int completed) {

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.security.Principal;
 import java.util.List;
@@ -39,19 +40,28 @@ public class QuizController {
 
         Quiz quiz = quizRepository.findById(quizId).orElse(null);
 
-        //find the user's attempts for this quiz
-        List<UserAttempt> userAttempts = userAttemptRepository.findByUserAndQuiz(user, quiz);
-
-        //logging user attempts for debugging
-        System.out.println("User Attempts: " + userAttempts);
-
         //find the questions for this quiz
         List<Question> questions = questionRepository.findByQuiz(quiz);
 
         model.addAttribute("quiz", quiz);
         model.addAttribute("questions", questions);
-        model.addAttribute("userAttempts", userAttempts);
 
         return "quiz";
+    }
+
+    @PostMapping("/submitQuiz/{quizId}")
+    public String submitQuiz(Model model, @PathVariable Long quizId, Principal principal) {
+        User user = userService.findByUsername(principal.getName());
+
+        Quiz quiz = quizRepository.findById(quizId).orElse(null);
+        List<UserAttempt> userAttempts = userAttemptRepository.findByUserAndQuiz(user, quiz);
+
+        //logging user attempts for debugging
+        System.out.println("User Attempts: " + userAttempts);
+
+        model.addAttribute("quiz", quiz);
+        model.addAttribute("userAttempts", userAttempts);
+
+        return "resultsPage";
     }
 }

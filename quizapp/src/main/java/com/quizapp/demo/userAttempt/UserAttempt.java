@@ -35,8 +35,6 @@ public class UserAttempt {
     @JoinColumn(name = "quiz_id", nullable = false)
     private Quiz quiz;
 
-    @Column(name = "attempt_number", nullable = false)
-    private int attemptNumber;
 
     @Column(name = "score")
     private int score;
@@ -59,11 +57,10 @@ public class UserAttempt {
         this.attemptId = attemptId;
     }
 
-    public UserAttempt(Long attemptId, User user, Quiz quiz, int attemptNumber, int score, Status status, LocalDateTime startTime, LocalDateTime endTime) {
+    public UserAttempt(Long attemptId, User user, Quiz quiz, int score, Status status, LocalDateTime startTime, LocalDateTime endTime) {
         this.attemptId = attemptId;
         this.user = user;
         this.quiz = quiz;
-        this.attemptNumber = attemptNumber;
         this.score = score;
         this.status = status;
         this.startTime = startTime;
@@ -76,7 +73,6 @@ public class UserAttempt {
                 "attemptId=" + attemptId +
                 ", user=" + user +
                 ", quiz=" + quiz +
-                ", attemptNumber=" + attemptNumber +
                 ", score=" + score +
                 ", status=" + status +
                 ", startTime=" + startTime +

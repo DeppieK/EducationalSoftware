@@ -236,29 +236,19 @@
 <header>
   <h1>HTML-HOLIC</h1>
   <p>Empowering Developers</p>
-  <div class="menu">
-    <a th:href="@{/profile}">
-      <img src="/profile.png" alt="Profile Icon"> Profile
-    </a>
-    <a th:href="@{/logout}">
-      <img src="/logout.png" alt="Logout Icon"> Logout
-    </a>
-  </div>
 </header>
 <main>
   <div class="quiz">
-      <b>Hello, <h5 th:text="${user.username}"></h5> this is a short quiz so we can see your knowledge's level in HTML and rank ypu in a certain level so you can take the appropriate theory and tests based on this.
-      </b><br>&nbsp;
-    <div class="section">
-      <h2 th:text="'Quiz: ' + ${quiz.title}"></h2>
-
+    <b>Hello, <h5 th:text="${user.username}"></h5> this is a short quiz so we can see your knowledge's level in HTML and rank ypu in a certain level so you can take the appropriate theory and tests based on this.
+    </b><br>&nbsp;
+    <form th:action="@{/homepage}" method="post" id="quizForm">
       <p th:if="${question != null}" th:text="${question.questionText}"></p>
       <div th:each="question : ${questions}" class="question">
         <p th:text="${question.questionText}"></p>
         <ul>
           <li th:each="option : ${question.questionOptions}">
             <label>
-              <button th:text="${option.optionText}"
+              <button type="button" th:text="${option.optionText}"
                       th:value="${option.optionText}"
                       th:data-correct="${option.isCorrect}"
                       onclick="checkAnswer(this, this.getAttribute('data-correct'))">
@@ -267,41 +257,20 @@
           </li>
         </ul>
       </div>
-    </div>
+      <button type="submit" id="submitBtn" disabled>Submit</button>
+    </form>
   </div>
 </main>
 <footer>
   <p>HTML-HOLIC &copy; 2024</p>
 </footer>
 <script>
-  let currentSection = 0;
-  const sections = document.querySelectorAll('.section');
-
-  function showSection(index) {
-    sections.forEach((section, i) => {
-      section.style.display = i === index ? 'block' : 'none';
-    });
-  }
-
-  function nextSection() {
-    if (currentSection < sections.length - 1) {
-      currentSection++;
-      showSection(currentSection);
-    }
-  }
-
-  function previousSection() {
-    if (currentSection > 0) {
-      currentSection--;
-      showSection(currentSection);
-    }
-  }
 
   function checkAnswer(button, isCorrect) {
     const buttons = button.closest('ul').querySelectorAll('button');
     buttons.forEach(btn => {
       btn.classList.add('disabled');
-      btn.disabled = true; //disable button
+      btn.disabled = true;
     });
 
     if (isCorrect === 'true') {
@@ -310,12 +279,26 @@
       button.classList.add('wrong-answer');
     }
 
-    button.classList.add('selected-answer'); //add class for selected answer
+    button.classList.add('selected-answer');
+    checkAllQuestionsAnswered();
 
   }
 
-  // Show the first section initially
-  showSection(currentSection);
+  function checkAllQuestionsAnswered() {
+    const questions = document.querySelectorAll('.question');
+    let allAnswered = true;
+
+    questions.forEach(question => {
+      const buttons = question.querySelectorAll('button');
+      const answered = Array.from(buttons).some(button => button.classList.contains('selected-answer'));
+      if (!answered) {
+        allAnswered = false;
+      }
+    });
+
+    document.getElementById('submitBtn').disabled = !allAnswered;
+  }
+
 </script>
 </body>
 </html>

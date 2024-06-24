@@ -248,82 +248,77 @@
 <main>
     <div class="section">
         <h2 th:text="'Quiz: ' + ${quiz.title}"></h2>
-        <h2>Your Attempts</h2>
-        <ul>
-            <li th:each="attempt : ${userAttempts}">
-                Attempt: [[${attempt.attemptNumber}]]/3
-                Score: <span th:text="${attempt.score}"></span>
-                Status: <span th:text="${attempt.status}"></span>
-            </li>
+        <h2>Your Mistakes</h2>
+        <ul id="mistakesCounter">
+            Mistakes: 0/3
         </ul>
-        <p th:if="${question != null}" th:text="${question.questionText}"></p>
-        <div th:each="question : ${questions}" class="question">
-            <p th:text="${question.questionText}"></p>
-            <ul>
-                <li th:each="option : ${question.questionOptions}">
-                    <label>
-                        <button th:text="${option.optionText}"
-                                th:value="${option.optionText}"
-                                th:data-correct="${option.isCorrect}"
-                                onclick="checkAnswer(this, this.getAttribute('data-correct'))">
-                        </button>
-                    </label>
-                </li>
-            </ul>
-        </div>
+        <form th:action="@{/submitQuiz/{quizId}(quizId = ${quiz.quizId})}" method="post" id="quizForm">
+            <p th:if="${question != null}" th:text="${question.questionText}"></p>
+            <div th:each="question : ${questions}" class="question">
+                <p th:text="${question.questionText}"></p>
+                <ul>
+                    <li th:each="option : ${question.questionOptions}">
+                        <label>
+                            <button type="button" th:text="${option.optionText}"
+                                    th:value="${option.optionText}"
+                                    th:data-correct="${option.isCorrect}"
+                                    onclick="checkAnswer(this, this.getAttribute('data-correct'))">
+                            </button>
+                        </label>
+                    </li>
+                </ul>
+            </div>
+            <button type="submit" id="submitBtn" disabled>Submit</button>
+        </form>
     </div>
-    <!--
-    <div class="navigation">
-        <button onclick="previousSection()">Previous</button>
-        <button onclick="nextSection()">Next</button>
-    </div>-->
 </main>
 <footer>
     <p>HTML-HOLIC &copy; 2024</p>
 </footer>
 <script>
-    let currentSection = 0;
-    const sections = document.querySelectorAll('.section');
-
-    function showSection(index) {
-        sections.forEach((section, i) => {
-            section.style.display = i === index ? 'block' : 'none';
-        });
-    }
-
-    function nextSection() {
-        if (currentSection < sections.length - 1) {
-            currentSection++;
-            showSection(currentSection);
-        }
-    }
-
-    function previousSection() {
-        if (currentSection > 0) {
-            currentSection--;
-            showSection(currentSection);
-        }
-    }
+    let mistakes = 0;
 
     function checkAnswer(button, isCorrect) {
         const buttons = button.closest('ul').querySelectorAll('button');
         buttons.forEach(btn => {
             btn.classList.add('disabled');
-            btn.disabled = true; //disable button
+            btn.disabled = true;
         });
 
         if (isCorrect === 'true') {
             button.classList.add('correct-answer');
         } else {
             button.classList.add('wrong-answer');
+            incrementMistakes();
         }
 
-        button.classList.add('selected-answer'); //add class for selected answer
-
+        button.classList.add('selected-answer');
+        checkAllQuestionsAnswered();
     }
 
-    // Show the first section initially
-    showSection(currentSection);
+    function incrementMistakes() {
+        mistakes++;
+        document.getElementById('mistakesCounter').innerText = `Mistakes: ${mistakes}/3`;
+        if (mistakes >= 3) {
+            alert("You've reached the maximum number of mistakes.");
+            document.getElementById("quizForm").submit();
+        }
+    }
+
+    function checkAllQuestionsAnswered() {
+        const questions = document.querySelectorAll('.question');
+        let allAnswered = true;
+
+        questions.forEach(question => {
+            const buttons = question.querySelectorAll('button');
+            const answered = Array.from(buttons).some(button => button.classList.contains('selected-answer'));
+            if (!answered) {
+                allAnswered = false;
+            }
+        });
+
+        document.getElementById('submitBtn').disabled = !allAnswered;
+    }
 </script>
 </body>
 </html>
