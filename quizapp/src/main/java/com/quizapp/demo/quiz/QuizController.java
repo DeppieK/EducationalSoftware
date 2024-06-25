@@ -1,5 +1,7 @@
 package com.quizapp.demo.quiz;
 
+import com.quizapp.demo.completion.Completion;
+import com.quizapp.demo.completion.CompletionRepository;
 import com.quizapp.demo.question.Question;
 import com.quizapp.demo.question.QuestionRepository;
 import com.quizapp.demo.user.User;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import java.security.Principal;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class QuizController {
@@ -25,6 +28,8 @@ public class QuizController {
     private QuestionRepository questionRepository;
     private UserAttemptRepository userAttemptRepository;
     private UserAttempt userAttempt;
+    @Autowired
+    private CompletionRepository completionRepository;
 
     public QuizController(UserService userService, QuizRepository quizRepository, QuestionRepository questionRepository, UserAttemptRepository userAttemptRepository) {
         this.userService = userService;
@@ -55,6 +60,20 @@ public class QuizController {
 
         Quiz quiz = quizRepository.findById(quizId).orElse(null);
         List<UserAttempt> userAttempts = userAttemptRepository.findByUserAndQuiz(user, quiz);
+
+        Completion existingCompletion = completionRepository.findByUserAndQuiz(user,quiz);
+
+        //if completion for this quiz exists then increment the completion
+        if (existingCompletion != null){
+            existingCompletion.setCompleted(existingCompletion.getCompleted() + 1);
+            //save completion record
+            userService.saveCompletion(existingCompletion);
+        }
+        else{
+            //else new completion record
+            Completion completion = new Completion(user, quiz, 1);
+            userService.saveCompletion(completion);
+        }
 
         //logging user attempts for debugging
         System.out.println("User Attempts: " + userAttempts);
