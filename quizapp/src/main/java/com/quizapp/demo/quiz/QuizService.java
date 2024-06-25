@@ -18,7 +18,11 @@ public class QuizService {
         return quizRepository.findAll();
     }
 
-    public Optional<Quiz> getQuizbyId(Long quizId) {
+    public Optional<Quiz> getQuizById(Long quizId) {
         return quizRepository.findById(quizId);
+    }
+
+    public List<Quiz> findByUnit(String unit) {
+        return quizRepository.findByUnit(unit);
     }
 }

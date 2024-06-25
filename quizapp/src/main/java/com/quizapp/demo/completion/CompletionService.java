@@ -15,7 +15,7 @@ public class CompletionService {
     }
 
     public Completion findByUserAndQuiz(User user, Quiz quiz) {
-        return completionRepository.findByUserAndQuiz(user, quiz).orElse(null);
+        return completionRepository.findByUserAndQuiz(user, quiz);
     }
 
 }

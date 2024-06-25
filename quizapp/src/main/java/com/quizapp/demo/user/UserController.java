@@ -125,23 +125,24 @@ public class UserController {
         return "profile";
     }
 
-    @GetMapping("/quizList")
-    public String intro(Model model) {
-        List<Quiz> quiz = quizService.getQuiz();
+    @GetMapping("/basics")
+    public String basics(Model model) {
+
+        List<Quiz> quiz = quizService.findByUnit("Basics");
+
         model.addAttribute("quiz", quiz);
 
         return "quizList";
     }
 
-    @GetMapping("/basics")
-    public String basics(Model model) {
-        return "basics";
-    }
-
 
     @GetMapping("/forms")
     public String forms(Model model) {
-        return "forms";
+        List<Quiz> quiz = quizService.findByUnit("Forms");
+
+        model.addAttribute("quiz", quiz);
+
+        return "quizList";
     }
 
     @GetMapping("/glossary")

@@ -24,9 +24,9 @@ public class QuizController {
 
     @Autowired
     private UserService userService;
-    private QuizRepository quizRepository;
-    private QuestionRepository questionRepository;
-    private UserAttemptRepository userAttemptRepository;
+    private final QuizRepository quizRepository;
+    private final QuestionRepository questionRepository;
+    private final UserAttemptRepository userAttemptRepository;
     private UserAttempt userAttempt;
     @Autowired
     private CompletionRepository completionRepository;
