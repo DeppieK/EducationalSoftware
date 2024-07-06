@@ -14,5 +14,7 @@ public interface UserAttemptRepository extends JpaRepository<UserAttempt, Long> 
     Optional<UserAttempt> findById(Long id);
     List<UserAttempt> findByUserAndQuiz(User user, Quiz quiz);
 
+    List<UserAttempt> findByUserAndAttemptId(User user, Long attemptId);
+
 
 }

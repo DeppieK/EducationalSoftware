@@ -236,14 +236,6 @@
         </a>
     </div>
 </header>
-<div class="navbar">
-    <ul>
-        <li><a th:href="@{/homepage}">Home</a></li>
-        <li><a th:href="@{/basics}">HTML Basics</a></li>
-        <li><a th:href="@{/forms}">HTML Forms</a></li>
-        <li><a th:href="@{/glossary}">HTML Glossary</a></li>
-    </ul>
-</div>
 <main>
     <div class="section">
         <h2 th:text="'Quiz: ' + ${quiz.title}"></h2>
@@ -267,7 +259,7 @@
                     </li>
                 </ul>
             </div>
-            <button type="submit" id="submitBtn" disabled>Submit</button>
+            <button onClick = "submitQuizForm()" id="submitBtn" disabled>Submit</button>
         </form>
     </div>
 </main>
@@ -276,6 +268,8 @@
 </footer>
 <script>
     let mistakes = 0;
+    const quizId = [[${quizId}]];
+    const userId = [[${userId}]];
 
     function checkAnswer(button, isCorrect) {
         const buttons = button.closest('ul').querySelectorAll('button');
@@ -300,7 +294,7 @@
         document.getElementById('mistakesCounter').innerText = `Mistakes: ${mistakes}/3`;
         if (mistakes >= 3) {
             alert("You've reached the maximum number of mistakes.");
-            document.getElementById("quizForm").submit();
+            submitQuizForm();
         }
     }
 
@@ -317,6 +311,25 @@
         });
 
         document.getElementById('submitBtn').disabled = !allAnswered;
+    }
+
+    function submitQuizForm() {
+        const form = document.getElementById("quizForm");
+        const formData = new FormData(form);
+        formData.append("score", mistakes);
+        formData.append("userId", userId);
+
+        fetch(`/submitQuiz/${quizId}`, {
+            method: "POST",
+            body: formData
+        }).then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    window.location.href = `/results/${data.attemptId}`;
+                } else {
+                    alert("Error submitting quiz.");
+                }
+            });
     }
 </script>
 </body>
