@@ -98,14 +98,15 @@ public class QuizController {
         model.addAttribute("quiz", quiz);
         model.addAttribute("userAttempts", userAttempts);
 
-        return "resultsPage";
+        return "redirect:/results/" + quizId;
     }
     @GetMapping("/results/{quizId}")
     public String getResultsPage(Model model, @PathVariable Long quizId, Principal principal) {
+        System.out.println("Hi");
         User user = userService.findByUsername(principal.getName());
 
         Quiz quiz = quizRepository.findById(quizId).orElse(null);
-        Long userAttemptId = userAttemptRepository.findMaxAttemptId(user.getId(), quiz.getQuizId());
+        Long userAttemptId = userAttemptRepository.findMaxAttemptId(user.getId(), quizId);
 
         UserAttempt userAttempt = userAttemptRepository.findById(userAttemptId).orElse(null); //get the first element which has the highest attemptId
         System.out.println("Latest User Attempt: " + userAttempt);
