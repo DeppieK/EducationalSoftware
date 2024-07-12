@@ -125,10 +125,10 @@ public class UserController {
         return "profile";
     }
 
-    @GetMapping("/basics")
+    @GetMapping("/intro")
     public String basics(Model model) {
 
-        List<Quiz> quiz = quizService.findByUnit("Basics");
+        List<Quiz> quiz = quizService.findByUnit("Intro");
 
         model.addAttribute("quiz", quiz);
 

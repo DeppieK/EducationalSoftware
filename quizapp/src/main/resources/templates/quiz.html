@@ -322,14 +322,13 @@
         fetch(`/submitQuiz/${quizId}`, {
             method: "POST",
             body: formData
-        }).then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    window.location.href = `/results/${data.attemptId}`;
-                } else {
-                    alert("Error submitting quiz.");
-                }
-            });
+        }).then(response => {
+            if (response.ok) {
+                window.location.href = `/results/${quizId}`;
+            } else {
+                alert("Error submitting quiz.");
+            }
+        });
     }
 </script>
 </body>

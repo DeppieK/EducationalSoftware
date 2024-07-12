@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HTML-HOLIC: Introduction to HTML</title>
-    <style>
+     <style>
         html, body {
             height: 100%;
             margin: 0;
@@ -87,14 +87,17 @@
 
 </div>
 <main>
-    <h2>Your Attempts</h2>
-    <ul>
-        <li th:each="attempt : ${userAttempts}">
-            Attempt: 
-            Score: <span th:text="${attempt.score}"></span>
-            Status: <span th:text="${attempt.status}"></span>
-        </li>
-    </ul>
+    <h2>Latest Attempt</h2>
+    <div>
+        <h3>Attempt Details</h3>
+        <ul>
+            <li>Attempt ID: <span th:text="${userAttempt.attemptId}"></span></li>
+            <li>Score: <span th:text="${userAttempt.score}"></span></li>
+            <li>Status: <span th:text="${userAttempt.status}"></span></li>
+            <li>Start Time: <span th:text="${userAttempt.startTime}"></span></li>
+            <li>End Time: <span th:text="${userAttempt.endTime}"></span></li>
+        </ul>
+    </div>
 </main>
 <footer>
     <p>HTML-HOLIC &copy; 2024</p>
