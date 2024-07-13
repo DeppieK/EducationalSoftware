@@ -65,6 +65,6 @@ public class Quiz {
     }
 
     public enum Difficulty {
-        BEGINNER, MEDIUM, INTERMEDIATE,NONE
+        BEGINNER,INTERMEDIATE,EXPERT,NONE
     }
 }

@@ -126,7 +126,7 @@ public class UserController {
     }
 
     @GetMapping("/intro")
-    public String basics(Model model) {
+    public String intro(Model model) {
 
         List<Quiz> quiz = quizService.findByUnit("Intro");
 
@@ -135,6 +135,14 @@ public class UserController {
         return "quizList";
     }
 
+    @GetMapping("/basics")
+    public String basics(Model model) {
+        List<Quiz> quiz = quizService.findByUnit("Basics");
+
+        model.addAttribute("quiz", quiz);
+
+        return "quizList";
+    }
 
     @GetMapping("/forms")
     public String forms(Model model) {
