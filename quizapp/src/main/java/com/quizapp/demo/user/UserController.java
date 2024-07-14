@@ -18,6 +18,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.time.LocalDateTime;
 import java.security.Principal;
+import java.util.Comparator;
 import java.util.List;
 import java.util.logging.Level;
 
@@ -85,13 +86,11 @@ public class UserController {
     @GetMapping("/homepage")
     public String homepage(Model model, Principal principal) {
         User user = userService.findByUsername(principal.getName());
-
         int completionCount = userService.getCompletionCountForQuizId(user, 3L);
 
         if (completionCount > 0) {
             return "homepage";
         } else {
-
             Quiz quiz = quizRepository.findById(3L).orElse(null);
 
             //find the questions for this quiz
@@ -106,11 +105,26 @@ public class UserController {
     }
 
     @PostMapping("/homepage")
-    public String submitQuiz(Principal principal) {
+    public String submitQuiz(@RequestParam("answers") List<Boolean> answers, Principal principal) {
         User user = userService.findByUsername(principal.getName());
-        Quiz quiz = quizRepository.findById(3L).orElse(null);
+        int mistakes = 0;
 
-        //save completion record
+        for (Boolean answer : answers) {
+            if (!answer) {
+                mistakes++;
+            }
+        }
+
+        if (mistakes < 3) {
+            user.setLevel(Quiz.Difficulty.INTERMEDIATE);
+        } else {
+            user.setLevel(Quiz.Difficulty.BEGINNER);
+        }
+
+        userService.save(user);
+
+        // save completion record
+        Quiz quiz = quizRepository.findById(3L).orElse(null);
         Completion completion = new Completion(user, quiz, 1);
         userService.saveCompletion(completion);
 
@@ -138,6 +152,9 @@ public class UserController {
 
         List<Quiz> quiz = quizService.findByUnitAndDifficulty("Intro", userLevel);
 
+        //sort quizzes based on the label
+        quiz.sort(Comparator.comparing(Quiz::getLabel));
+
         model.addAttribute("quiz", quiz);
 
         return "quizList";
@@ -153,6 +170,8 @@ public class UserController {
 
         List<Quiz> quiz = quizService.findByUnitAndDifficulty("Basics", userLevel);
 
+        quiz.sort(Comparator.comparing(Quiz::getLabel));
+
         model.addAttribute("quiz", quiz);
 
         return "quizList";
@@ -167,6 +186,8 @@ public class UserController {
         Quiz.Difficulty userLevel = user.getLevel();
 
         List<Quiz> quiz = quizService.findByUnitAndDifficulty("Forms", userLevel);
+
+        quiz.sort(Comparator.comparing(Quiz::getLabel));
 
         model.addAttribute("quiz", quiz);
 

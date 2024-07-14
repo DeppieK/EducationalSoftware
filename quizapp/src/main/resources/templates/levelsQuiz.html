@@ -256,6 +256,7 @@
             </label>
           </li>
         </ul>
+        <input type="hidden" name="answers" class="answer-input">
       </div>
       <button type="submit" id="submitBtn" disabled>Submit</button>
     </form>
@@ -282,6 +283,8 @@
     button.classList.add('selected-answer');
     checkAllQuestionsAnswered();
 
+    const answerInput = button.closest('.question').querySelector('.answer-input');
+    answerInput.value = isCorrect === 'true';
   }
 
   function checkAllQuestionsAnswered() {

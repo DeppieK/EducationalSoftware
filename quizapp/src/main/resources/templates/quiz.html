@@ -258,6 +258,7 @@
                         </label>
                     </li>
                 </ul>
+                <input type="hidden" name="answers" class="answer-input">
             </div>
             <button onClick = "submitQuizForm()" id="submitBtn" disabled>Submit</button>
         </form>
@@ -282,11 +283,13 @@
             button.classList.add('correct-answer');
         } else {
             button.classList.add('wrong-answer');
-            incrementMistakes();
         }
 
         button.classList.add('selected-answer');
         checkAllQuestionsAnswered();
+
+        const answerInput = button.closest('.question').querySelector('.answer-input');
+        answerInput.value = isCorrect === 'true';
     }
 
     function incrementMistakes() {

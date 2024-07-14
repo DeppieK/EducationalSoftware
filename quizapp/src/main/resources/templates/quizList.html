@@ -212,6 +212,14 @@
             height:15px;
             width:15px;
         }
+        .disabled {
+            pointer-events: none;
+            opacity: 0.5;
+        }
+        .enabled {
+            pointer-events: auto;
+            opacity: 1;
+        }
     </style>
 </head>
 <body>
@@ -239,11 +247,7 @@
 <main>
 
     <h3>Quiz List:</h3>
-    <div th:each="quiz : ${quiz}" class="quiz">
-        <a th:href="@{/quiz/{quizId}(quizId = ${quiz.quizId})}" class="href">
-            <button th:text="'Quiz ' + ${quiz.label}"></button>
-        </a>
-    </div>
+
 
 </main>
 <footer>

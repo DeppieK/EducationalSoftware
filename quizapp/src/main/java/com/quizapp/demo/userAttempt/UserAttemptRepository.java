@@ -15,6 +15,7 @@ import java.util.Optional;
 public interface UserAttemptRepository extends JpaRepository<UserAttempt, Long> {
     Optional<UserAttempt> findById(Long id);
     List<UserAttempt> findByUserAndQuiz(User user, Quiz quiz);
+    List<UserAttempt> findByUser(User user);
 
     @Query("SELECT MAX(ua.attemptId) FROM UserAttempt ua WHERE ua.user.id = :userId AND ua.quiz.quizId = :quizId")
     Long findMaxAttemptId(@Param("userId") Long userId, @Param("quizId") Long quizId);
