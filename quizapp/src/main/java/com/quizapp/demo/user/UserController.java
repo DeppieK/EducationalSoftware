@@ -19,6 +19,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.time.LocalDateTime;
 import java.security.Principal;
 import java.util.List;
+import java.util.logging.Level;
 
 @Controller
 public class UserController {
@@ -28,6 +29,8 @@ public class UserController {
     private QuizService quizService;
     private QuizRepository quizRepository;
     private QuestionRepository questionRepository;
+    @Autowired
+    private User user;
 
     public UserController(UserService userService,QuizRepository quizRepository, QuestionRepository questionRepository, QuizService quizService) {
         this.userService = userService;
@@ -127,8 +130,13 @@ public class UserController {
 
     @GetMapping("/intro")
     public String intro(Model model) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
 
-        List<Quiz> quiz = quizService.findByUnit("Intro");
+        User user = userService.findByUsername(username);
+        Quiz.Difficulty userLevel = user.getLevel();
+
+        List<Quiz> quiz = quizService.findByUnitAndDifficulty("Intro", userLevel);
 
         model.addAttribute("quiz", quiz);
 
@@ -137,7 +145,13 @@ public class UserController {
 
     @GetMapping("/basics")
     public String basics(Model model) {
-        List<Quiz> quiz = quizService.findByUnit("Basics");
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+
+        User user = userService.findByUsername(username);
+        Quiz.Difficulty userLevel = user.getLevel();
+
+        List<Quiz> quiz = quizService.findByUnitAndDifficulty("Basics", userLevel);
 
         model.addAttribute("quiz", quiz);
 
@@ -146,7 +160,13 @@ public class UserController {
 
     @GetMapping("/forms")
     public String forms(Model model) {
-        List<Quiz> quiz = quizService.findByUnit("Forms");
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+
+        User user = userService.findByUsername(username);
+        Quiz.Difficulty userLevel = user.getLevel();
+
+        List<Quiz> quiz = quizService.findByUnitAndDifficulty("Forms", userLevel);
 
         model.addAttribute("quiz", quiz);
 

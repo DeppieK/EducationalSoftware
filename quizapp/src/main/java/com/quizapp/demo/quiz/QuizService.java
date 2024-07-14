@@ -22,7 +22,7 @@ public class QuizService {
         return quizRepository.findById(quizId);
     }
 
-    public List<Quiz> findByUnit(String unit) {
-        return quizRepository.findByUnit(unit);
+    public List<Quiz> findByUnitAndDifficulty(String unit, Quiz.Difficulty difficulty) {
+        return quizRepository.findByUnitAndDifficulty(unit,difficulty);
     }
 }

@@ -1,5 +1,6 @@
 package com.quizapp.demo.user;
 
+import com.quizapp.demo.quiz.Quiz;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -29,7 +30,9 @@ public class User {
     private String lastname;
     private String username;
     private String password;
-    private String level;
+
+    @Enumerated(EnumType.STRING)
+    private Quiz.Difficulty level;
 
     private String email;
     private LocalDateTime dateOfRegistration;
@@ -45,7 +48,7 @@ public class User {
         this.id = id;
     }
 
-    public User(Long id, String firstname, String lastname, String username, String password, String level, String email, LocalDateTime dateOfRegistration, LocalDateTime lastLogIn) {
+    public User(Long id, String firstname, String lastname, String username, String password, Quiz.Difficulty level, String email, LocalDateTime dateOfRegistration, LocalDateTime lastLogIn) {
         this.id = id;
         this.firstname = firstname;
         this.lastname = lastname;
@@ -70,5 +73,9 @@ public class User {
                 ", dateOfRegistration=" + dateOfRegistration +
                 ", lastLogIn=" + lastLogIn +
                 '}';
+    }
+
+    public enum Level {
+        BEGINNER,INTERMEDIATE,EXPERT,NONE
     }
 }
