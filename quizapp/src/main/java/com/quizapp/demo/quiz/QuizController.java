@@ -4,6 +4,8 @@ import com.quizapp.demo.completion.Completion;
 import com.quizapp.demo.completion.CompletionRepository;
 import com.quizapp.demo.question.Question;
 import com.quizapp.demo.question.QuestionRepository;
+import com.quizapp.demo.questionAttempt.QuestionAttempt;
+import com.quizapp.demo.questionAttempt.QuestionAttemptRepository;
 import com.quizapp.demo.user.User;
 import com.quizapp.demo.user.UserService;
 import com.quizapp.demo.userAttempt.UserAttempt;
@@ -21,6 +23,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import static com.quizapp.demo.quiz.Quiz.Difficulty.*;
+
 @Controller
 public class QuizController {
 
@@ -28,6 +32,7 @@ public class QuizController {
     private UserService userService;
     private final QuizRepository quizRepository;
     private final QuestionRepository questionRepository;
+    private final QuestionAttemptRepository questionAttemptRepository;
     private final UserAttemptRepository userAttemptRepository;
     private final UserAttemptService userAttemptService;
     private UserAttempt userAttempt;
@@ -35,10 +40,11 @@ public class QuizController {
     @Autowired
     private CompletionRepository completionRepository;
 
-    public QuizController(UserService userService, QuizRepository quizRepository, QuestionRepository questionRepository, UserAttemptRepository userAttemptRepository, UserAttemptService userAttemptService) {
+    public QuizController(UserService userService, QuizRepository quizRepository, QuestionRepository questionRepository, QuestionAttemptRepository questionAttemptRepository, UserAttemptRepository userAttemptRepository, UserAttemptService userAttemptService) {
         this.userService = userService;
         this.quizRepository = quizRepository;
         this.questionRepository = questionRepository;
+        this.questionAttemptRepository = questionAttemptRepository;
         this.userAttemptRepository = userAttemptRepository;
         this.userAttemptService = userAttemptService;
     }
@@ -66,9 +72,11 @@ public class QuizController {
     public String submitQuiz(Model model, @PathVariable Long quizId,@RequestParam("answers") List<Boolean> answers, Principal principal) {
         User user = userService.findByUsername(principal.getName());
         int score = 0;
+        int mistakes = 0;
 
         Quiz quiz = quizRepository.findById(quizId).orElse(null);
         List<UserAttempt> userAttempts = userAttemptRepository.findByUserAndQuiz(user, quiz);
+        List<Question> questions = questionRepository.findByQuiz(quiz);
 
         for (Boolean answer : answers) {
             if (answer != null && answer) {
@@ -76,6 +84,21 @@ public class QuizController {
             }
         }
 
+        for (int i = 0; i < questions.size(); i++) {
+            Boolean answer = answers.get(i);
+            Question question = questions.get(i);
+            boolean isCorrect = answer != null && answer;
+
+            if (!isCorrect) {
+                //log only incorrect question attempts
+                QuestionAttempt questionAttempt = new QuestionAttempt();
+                questionAttempt.setAttemptId(user.getId().intValue());
+                questionAttempt.setQuestion(question);
+                questionAttempt.setIsCorrect(false);
+                questionAttemptRepository.save(questionAttempt);
+
+            }
+        }
 
         Completion existingCompletion = completionRepository.findByUserAndQuiz(user,quiz);
 
@@ -95,6 +118,9 @@ public class QuizController {
         int betterAttemptScore = (betterAttempt != null) ? betterAttempt : 0;
         int totalScore = user.getTotalScore() + betterAttemptScore;
 
+        //int totalPassedQuizzes = userAttemptRepository.countDistinctPassedQuizzes(user.getId());
+
+        //userAttemptService.checkLevel(user, totalScore, totalPassedQuizzes);
 
         user.setTotalScore(totalScore);
 
