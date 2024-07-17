@@ -35,9 +35,6 @@ public class Question {
     @Column(name = "question_text", nullable = false, columnDefinition = "TEXT")
     private String questionText;
 
-    @Column(name = "correct_answer", columnDefinition = "TEXT")
-    private String correctAnswer;
-
     @ManyToOne
     @JoinColumn(name = "alternative_question_id")
     private Question alternativeQuestion;
@@ -53,11 +50,10 @@ public class Question {
         this.questionId = questionId;
     }
 
-    public Question(Long questionId, Quiz quiz, String questionText,String correctAnswer, Question alternativeQuestion) {
+    public Question(Long questionId, Quiz quiz, String questionText, Question alternativeQuestion) {
         this.questionId = questionId;
         this.quiz = quiz;
         this.questionText = questionText;
-        this.correctAnswer = correctAnswer;
         this.alternativeQuestion = alternativeQuestion;
     }
 
@@ -67,7 +63,6 @@ public class Question {
                 "questionId=" + questionId +
                 ", quiz=" + quiz +
                 ", questionText='" + questionText + '\'' +
-                ", correctAnswer='" + correctAnswer + '\'' +
                 ", alternativeQuestion=" + alternativeQuestion +
                 '}';
     }
