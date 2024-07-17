@@ -65,10 +65,16 @@ public class QuizController {
     @PostMapping("/submitQuiz/{quizId}")
     public String submitQuiz(Model model, @PathVariable Long quizId,@RequestParam("answers") List<Boolean> answers, Principal principal) {
         User user = userService.findByUsername(principal.getName());
+        int score = 0;
 
         Quiz quiz = quizRepository.findById(quizId).orElse(null);
         List<UserAttempt> userAttempts = userAttemptRepository.findByUserAndQuiz(user, quiz);
 
+        for (Boolean answer : answers) {
+            if (answer != null && answer) {
+                score += 10;
+            }
+        }
 
 
         Completion existingCompletion = completionRepository.findByUserAndQuiz(user,quiz);
@@ -88,8 +94,8 @@ public class QuizController {
         UserAttempt userAttempt = new UserAttempt();
         userAttempt.setUser(user);
         userAttempt.setQuiz(quiz);
-        //userAttempt.setScore(score);
-        //userAttempt.setStatus(score > 40 ? UserAttempt.Status.PASSED : UserAttempt.Status.FAILED);
+        userAttempt.setScore(score);
+        userAttempt.setStatus(score > 40 ? UserAttempt.Status.PASSED : UserAttempt.Status.FAILED);
         userAttempt.setStartTime(LocalDateTime.now().minusMinutes(5));
         userAttempt.setEndTime(LocalDateTime.now());
 

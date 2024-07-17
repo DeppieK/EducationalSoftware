@@ -42,6 +42,59 @@
             overflow: auto;
         }
 
+        .navbar ul {
+            padding: 0;
+            margin: 0;
+            list-style-type: none;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .navbar ul li {
+            position: relative;
+        }
+
+        .navbar ul li a {
+            display: block;
+            padding: 12px 12px;
+            color: #333;
+            text-decoration: none;
+            transition: background-color 0.3s, color 0.3s;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+        }
+
+        .navbar ul li a:hover {
+            background-color: #999;
+        }
+
+        .navbar ul li ul {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #b0b0b0;
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            min-width: 200px;
+            z-index: 1000;
+        }
+
+        .navbar ul li ul li {
+            display: block;
+        }
+
+        .navbar ul li ul li a {
+            padding: 6px 10px;
+            font-weight: 360;
+        }
+
+        .navbar ul li:hover ul {
+            display: block;
+        }
+
+
         main {
             padding: 20px;
             background-color: #fafafa;
@@ -84,18 +137,23 @@
     <p>Empowering Developers</p>
 </header>
 <div class="navbar">
-
+    <ul>
+        <li><a th:href="@{/homepage}">Home</a></li>
+        <li><a th:href="@{/intro}">HTML Intro</a></li>
+        <li><a th:href="@{/basics}">HTML Basics</a></li>
+        <li><a th:href="@{/forms}">HTML Forms</a></li>
+        <li><a th:href="@{/glossary}">HTML Glossary</a></li>
+    </ul>
 </div>
 <main>
-    <h2>Latest Attempt</h2>
+    <h2>Your Attempt</h2>
     <div>
         <h3>Attempt Details</h3>
         <ul>
-            <li>Attempt ID: <span th:text="${userAttempt.attemptId}"></span></li>
             <li>Score: <span th:text="${userAttempt.score}"></span></li>
             <li>Status: <span th:text="${userAttempt.status}"></span></li>
-            <li>Start Time: <span th:text="${userAttempt.startTime}"></span></li>
-            <li>End Time: <span th:text="${userAttempt.endTime}"></span></li>
+            <li>Start Time: <span th:text="${#temporals.format(userAttempt.startTime.toLocalTime(), 'HH:mm:ss')}"></span></li>
+            <li>End Time: <span th:text="${#temporals.format(userAttempt.endTime.toLocalTime(), 'HH:mm:ss')}"></span></li>
         </ul>
     </div>
 </main>

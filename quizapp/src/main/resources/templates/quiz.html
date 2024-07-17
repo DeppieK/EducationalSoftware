@@ -321,17 +321,7 @@
         const form = document.getElementById("quizForm");
         const formData = new FormData(form);
 
-        // Calculate score based on answers
-        let score = 0;
-        const questions = document.querySelectorAll('.question');
-        questions.forEach(question => {
-            const correctAnswer = question.querySelector('.correct-answer');
-            if (correctAnswer) {
-                score += 10; //increment score by 10 for each correct answer
-            }
-        });
-
-        formData.append("score", score);
+        //formData.append("answers", answers);
         formData.append("userId", userId);
 
         fetch(`/submitQuiz/${quizId}`, {
