@@ -34,6 +34,8 @@ public class User {
     @Enumerated(EnumType.STRING)
     private Quiz.Difficulty level;
 
+    private int totalScore;
+
     private String email;
     private LocalDateTime dateOfRegistration;
     private LocalDateTime lastLogIn;
@@ -48,13 +50,14 @@ public class User {
         this.id = id;
     }
 
-    public User(Long id, String firstname, String lastname, String username, String password, Quiz.Difficulty level, String email, LocalDateTime dateOfRegistration, LocalDateTime lastLogIn) {
+    public User(Long id, String firstname, String lastname, String username, String password, Quiz.Difficulty level, int totalScore, String email, LocalDateTime dateOfRegistration, LocalDateTime lastLogIn) {
         this.id = id;
         this.firstname = firstname;
         this.lastname = lastname;
         this.username = username;
         this.password = password;
         this.level = level;
+        this.totalScore = totalScore;
         this.email = email;
         this.dateOfRegistration = dateOfRegistration;
         this.lastLogIn = lastLogIn;
@@ -68,6 +71,7 @@ public class User {
                 ", lastname='" + lastname + '\'' +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
+                ", totalScore=" + totalScore +
                 ", level='" + level + '\'' +
                 ", email='" + email + '\'' +
                 ", dateOfRegistration=" + dateOfRegistration +

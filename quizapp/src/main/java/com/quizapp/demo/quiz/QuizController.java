@@ -91,6 +91,13 @@ public class QuizController {
             userService.saveCompletion(completion);
         }
 
+        Integer betterAttempt = userAttemptRepository.findBetterAttempt(user.getId(), quiz.getQuizId());
+        int betterAttemptScore = (betterAttempt != null) ? betterAttempt : 0;
+        int totalScore = user.getTotalScore() + betterAttemptScore;
+
+
+        user.setTotalScore(totalScore);
+
         UserAttempt userAttempt = new UserAttempt();
         userAttempt.setUser(user);
         userAttempt.setQuiz(quiz);

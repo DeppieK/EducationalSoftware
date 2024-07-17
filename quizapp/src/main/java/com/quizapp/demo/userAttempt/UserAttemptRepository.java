@@ -20,4 +20,7 @@ public interface UserAttemptRepository extends JpaRepository<UserAttempt, Long> 
     @Query("SELECT MAX(ua.attemptId) FROM UserAttempt ua WHERE ua.user.id = :userId AND ua.quiz.quizId = :quizId")
     Long findMaxAttemptId(@Param("userId") Long userId, @Param("quizId") Long quizId);
 
+    @Query("SELECT MAX(ua.score) FROM UserAttempt ua WHERE ua.user.id = :userId AND ua.quiz.quizId = :quizId")
+    Integer findBetterAttempt(@Param("userId") Long userId, @Param("quizId") Long quizId);
+
 }
