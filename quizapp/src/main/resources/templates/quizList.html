@@ -247,7 +247,11 @@
 <main>
 
     <h3>Quiz List:</h3>
-
+    <div th:each="quiz : ${quiz}" class="quiz">
+        <a th:href="@{/quiz/{quizId}(quizId = ${quiz.quizId})}" class="href">
+            <button th:text="'Quiz ' + ${quiz.label}"></button>
+        </a>
+    </div>
 
 </main>
 <footer>

@@ -121,8 +121,6 @@ public class UserController {
             user.setLevel(Quiz.Difficulty.BEGINNER);
         }
 
-        userService.save(user);
-
         // save completion record
         Quiz quiz = quizRepository.findById(3L).orElse(null);
         Completion completion = new Completion(user, quiz, 1);
