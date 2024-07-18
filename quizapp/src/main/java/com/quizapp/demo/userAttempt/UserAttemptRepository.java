@@ -24,8 +24,9 @@ public interface UserAttemptRepository extends CrudRepository<UserAttempt, Long>
     @Query("SELECT MAX(ua.score) FROM UserAttempt ua WHERE ua.user.id = :userId AND ua.quiz.quizId = :quizId")
     Integer findBetterAttempt(@Param("userId") Long userId, @Param("quizId") Long quizId);
 
-    //@Query("SELECT COUNT(DISTINCT ua.quiz) FROM UserAttempt ua WHERE ua.user.id = :userId AND ua.status = UserAttempt.Status.PASSED")
-    //int countDistinctPassedQuizzes(@Param("userId") Long userId);
+    @Query("SELECT COUNT(DISTINCT ua.quiz) FROM UserAttempt ua WHERE ua.user.id = :userId AND ua.status = 'PASSED'")
+    int countDistinctPassedQuizzes(Long userId);
+
 
 
 }

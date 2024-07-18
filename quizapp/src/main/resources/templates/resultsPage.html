@@ -37,6 +37,38 @@
             font-weight: 400;
         }
 
+        .menu {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            text-align: center; /* Center align the menu */
+        }
+
+        .menu a {
+            display: block;
+            color: #333;
+            text-decoration: none;
+            margin: 3px 0;
+            padding: 8px;
+            background-color: #fff;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+            font-weight: 400;
+            display: flex;
+            align-items: center;
+        }
+
+        .menu a img {
+            width: 18px;
+            height: 18px;
+            margin-right: 8px;
+        }
+
+        .menu a:hover {
+            background-color: #999;
+            color: #fff;
+        }
+        
         .navbar {
             background-color: #b0b0b0;
             overflow: auto;
@@ -135,6 +167,14 @@
 <header>
     <h1>HTML-HOLIC</h1>
     <p>Empowering Developers</p>
+    <div class="menu">
+        <a th:href="@{/profile}">
+            <img src="./profile.png" alt="Profile Icon"> Profile
+        </a>
+        <a th:href="@{/logout}">
+            <img src="./logout.png" alt="Logout Icon"> Logout
+        </a>
+    </div>
 </header>
 <div class="navbar">
     <ul>
