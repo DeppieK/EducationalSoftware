@@ -118,9 +118,18 @@ public class QuizController {
         int betterAttemptScore = (betterAttempt != null) ? betterAttempt : 0;
         int totalScore = user.getTotalScore() + betterAttemptScore;
 
-        //int totalPassedQuizzes = userAttemptRepository.countDistinctPassedQuizzes(user.getId());
+        int totalPassedQuizzes = userAttemptRepository.countDistinctPassedQuizzes(user.getId());
+        System.out.println(totalPassedQuizzes);
 
-        //userAttemptService.checkLevel(user, totalScore, totalPassedQuizzes);
+        if ((user.getLevel() == INTERMEDIATE) && (totalPassedQuizzes >= 3) && (totalScore < (80/100)*210)){
+            user.setLevel(BEGINNER);
+        }
+        else if ((user.getLevel() == BEGINNER && (totalPassedQuizzes >= 3) && totalScore > (90/100)*210)){
+            user.setLevel(INTERMEDIATE);
+        }
+        else if ((user.getLevel() == INTERMEDIATE && (totalPassedQuizzes >= 5) && totalScore > (98/100)*210)){
+            user.setLevel(EXPERT);
+        }
 
         user.setTotalScore(totalScore);
 

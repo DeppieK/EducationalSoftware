@@ -19,15 +19,15 @@ public class UserAttemptService {
         userAttemptRepository.save(userAttempt);
     }
 
-    public void checkLevel(User user, int totalPassedQuizzes, int totalScore){
-        if (user.getLevel() == INTERMEDIATE && (totalPassedQuizzes >= 3 && totalScore < (80/100)*100)){
+    /*public void checkLevel(User user, int totalPassedQuizzes, int totalScore){
+        if ((user.getLevel() == INTERMEDIATE) && (totalPassedQuizzes >= 3) && (totalScore < (80/100)*210)){
             user.setLevel(BEGINNER);
         }
-        else if (user.getLevel() == BEGINNER && (totalPassedQuizzes >= 3 && totalScore > (90/100)*100)){
+        else if ((user.getLevel() == BEGINNER && (totalPassedQuizzes >= 3) && totalScore > (90/100)*210)){
             user.setLevel(INTERMEDIATE);
         }
-        else if (user.getLevel() == INTERMEDIATE && (totalPassedQuizzes >= 3 && totalScore > (98/100)*100)){
+        else if ((user.getLevel() == INTERMEDIATE && (totalPassedQuizzes >= 5) && totalScore > (98/100)*210)){
             user.setLevel(EXPERT);
         }
-    }
+    }*/
 }
