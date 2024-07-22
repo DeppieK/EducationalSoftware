@@ -1,11 +1,9 @@
 package com.quizapp.demo.questionAttempt;
 
 import com.quizapp.demo.question.Question;
-import com.quizapp.demo.user.User;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-import org.antlr.v4.runtime.misc.NotNull;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @Setter
@@ -27,36 +25,39 @@ public class QuestionAttempt {
     )
     private Long questionAttemptId;
 
-    @Column(name = "attempt", nullable = false)
-    @NotNull
-    private Integer attempt;
+    @Column(name = "attempt_id", nullable = false)
+    private Integer attemptId;
 
     @ManyToOne
     @JoinColumn(name = "question_id", nullable = false)
     private Question question;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
 
-    // Constructors, getters, setters, toString
+    @Column(name = "is_correct", nullable = false)
+    private Boolean isCorrect;
 
-    public QuestionAttempt() {}
+    // Constructors
+    public QuestionAttempt() {
+    }
 
-    public QuestionAttempt(Long questionAttemptId, Integer attempt, User user, Question question) {
+    public QuestionAttempt(Long questionAttemptId) {
         this.questionAttemptId = questionAttemptId;
-        this.attempt = (attempt != null) ? attempt : 0;
-        this.user = user;
+    }
+
+    public QuestionAttempt(Long questionAttemptId, Integer attemptId, Question question, Boolean isCorrect) {
+        this.questionAttemptId = questionAttemptId;
+        this.attemptId = attemptId;
         this.question = question;
+        this.isCorrect = isCorrect;
     }
 
     @Override
     public String toString() {
         return "QuestionAttempt{" +
                 "questionAttemptId=" + questionAttemptId +
-                ", attempt=" + attempt +
+                ", attemptId=" + attemptId +
                 ", question=" + question +
-                ", user=" + user +
+                ", isCorrect=" + isCorrect +
                 '}';
     }
 }
