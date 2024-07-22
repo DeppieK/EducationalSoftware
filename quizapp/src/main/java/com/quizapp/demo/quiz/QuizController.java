@@ -51,22 +51,39 @@ public class QuizController {
 
     @GetMapping("/quiz/{quizId}")
     public String quiz(Model model, @PathVariable Long quizId, Principal principal) {
-        //get the current user
+        // Get the current user
         User user = userService.findByUsername(principal.getName());
         Long userId = user.getId();
 
         Quiz quiz = quizRepository.findById(quizId).orElse(null);
+        Completion completion = completionRepository.findByUserAndQuiz(user,quiz);
 
-        //find the questions for this quiz
+
+        // Find the questions for this quiz
         List<Question> questions = questionRepository.findByQuiz(quiz);
+        Map<Long, String> questionTexts = new HashMap<>();
+
+        for (Question question : questions) {
+            Optional<QuestionAttempt> attemptOpt = questionAttemptRepository.findByUserAndQuestion(user, question);
+            if (attemptOpt.isPresent() && attemptOpt.get().getAttempt() >= 3) {
+                questionTexts.put(question.getQuestionId(), question.getAlternativeQuestionText());
+            } else {
+                questionTexts.put(question.getQuestionId(), question.getQuestionText());
+            }
+        }
 
         model.addAttribute("quiz", quiz);
         model.addAttribute("questions", questions);
+        model.addAttribute("questionTexts", questionTexts);
         model.addAttribute("userId", userId);
         model.addAttribute("quizId", quizId);
+        model.addAttribute("completion", completion);
+
 
         return "quiz";
     }
+
+
 
     @PostMapping("/submitQuiz/{quizId}")
     public String submitQuiz(Model model, @PathVariable Long quizId,@RequestParam("answers") List<Boolean> answers, Principal principal) {
@@ -89,16 +106,26 @@ public class QuizController {
             Question question = questions.get(i);
             boolean isCorrect = answer != null && answer;
 
-            if (!isCorrect) {
-                //log only incorrect question attempts
-                QuestionAttempt questionAttempt = new QuestionAttempt();
-                questionAttempt.setAttemptId(user.getId().intValue());
-                questionAttempt.setQuestion(question);
-                questionAttempt.setIsCorrect(false);
-                questionAttemptRepository.save(questionAttempt);
+            if (answer != null && !isCorrect) {
+                // Check if a QuestionAttempt already exists for this user and question
+                Optional<QuestionAttempt> existingAttemptOpt = questionAttemptRepository.findByUserAndQuestion(user, question);
 
+                if (existingAttemptOpt.isPresent()) {
+                    // If it exists, increment the attempt count
+                    QuestionAttempt existingAttempt = existingAttemptOpt.get();
+                    existingAttempt.setAttempt(existingAttempt.getAttempt() + 1);
+                    questionAttemptRepository.save(existingAttempt);
+                } else {
+                    // If it does not exist, create a new QuestionAttempt record
+                    QuestionAttempt questionAttempt = new QuestionAttempt();
+                    questionAttempt.setQuestion(question);
+                    questionAttempt.setUser(user);
+                    questionAttempt.setAttempt(1);
+                    questionAttemptRepository.save(questionAttempt);
+                }
             }
         }
+
 
         Completion existingCompletion = completionRepository.findByUserAndQuiz(user,quiz);
 
@@ -150,6 +177,7 @@ public class QuizController {
 
         return "redirect:/results/" + quizId;
     }
+
     @GetMapping("/results/{quizId}")
     public String getResultsPage(Model model, @PathVariable Long quizId, Principal principal) {
         User user = userService.findByUsername(principal.getName());

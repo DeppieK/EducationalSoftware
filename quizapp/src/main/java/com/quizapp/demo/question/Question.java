@@ -35,9 +35,8 @@ public class Question {
     @Column(name = "question_text", nullable = false, columnDefinition = "TEXT")
     private String questionText;
 
-    @ManyToOne
-    @JoinColumn(name = "alternative_question_id")
-    private Question alternativeQuestion;
+    @Column(name = "alternative_question_text")
+    private String alternativeQuestionText;
 
     @OneToMany(mappedBy = "question", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<QuestionOption> questionOptions;
@@ -50,11 +49,11 @@ public class Question {
         this.questionId = questionId;
     }
 
-    public Question(Long questionId, Quiz quiz, String questionText, Question alternativeQuestion) {
+    public Question(Long questionId, Quiz quiz, String questionText, String alternativeQuestionText) {
         this.questionId = questionId;
         this.quiz = quiz;
         this.questionText = questionText;
-        this.alternativeQuestion = alternativeQuestion;
+        this.alternativeQuestionText = alternativeQuestionText;
     }
 
     @Override
@@ -63,7 +62,7 @@ public class Question {
                 "questionId=" + questionId +
                 ", quiz=" + quiz +
                 ", questionText='" + questionText + '\'' +
-                ", alternativeQuestion=" + alternativeQuestion +
+                ", alternativeQuestionText=" + alternativeQuestionText +
                 '}';
     }
 
