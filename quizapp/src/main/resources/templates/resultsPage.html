@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HTML-HOLIC: Introduction to HTML</title>
-     <style>
+    <style>
         html, body {
             height: 100%;
             margin: 0;
@@ -126,31 +126,65 @@
             display: block;
         }
 
-
         main {
             padding: 20px;
             background-color: #fafafa;
             flex: 1;
             display: flex;
-            justify-content: space-around;
+            justify-content: center;
             align-items: center;
+        }
+
+        .content {
+            background: linear-gradient(145deg, #b0b0b0, #fff);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 100%;
+            text-align: left;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        .content h2 {
+            margin-top: 0;
+            font-size: 24px;
+            color: #333;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .content h3 {
+            font-size: 20px;
+            color: #007bff;
+            margin-bottom: 15px;
+        }
+
+        .content ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .content li {
+            margin-bottom: 10px;
+            font-size: 16px;
+            color: #555;
+        }
+
+        .content li span {
+            font-weight: bold;
         }
 
         footer {
             background-color: #b0b0b0;
             color: #333;
             text-align: center;
-            padding: 0px;
+            padding: 10px;
             width: 100%;
             font-size: 12px;
             font-family: 'Roboto', sans-serif;
             font-weight: 250;
-        }
-
-        h3 {
-            font-size: 20px;
-            color: #007bff;
-            margin-bottom: 10px;
         }
 
         ul {
@@ -160,6 +194,11 @@
         img {
             height: 15px;
             width: 15px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
     </style>
 </head>
@@ -186,19 +225,21 @@
     </ul>
 </div>
 <main>
-    <h2>Your Attempt</h2>
-    <div>
-        <h3>Attempt Details</h3>
-        <ul>
-            <li>Score: <span th:text="${userAttempt.score}"></span></li>
-            <li>Status: <span th:text="${userAttempt.status}"></span></li>
-            <li>Start Time: <span th:text="${#temporals.format(userAttempt.startTime.toLocalTime(), 'HH:mm:ss')}"></span></li>
-            <li>End Time: <span th:text="${#temporals.format(userAttempt.endTime.toLocalTime(), 'HH:mm:ss')}"></span></li>
-        </ul>
+    <div class="content">
+        <h2>Your Attempt</h2>
+        <div>
+            <h3>Attempt Details</h3>
+            <ul>
+                <li>Score: <span th:text="${userAttempt.score}"></span></li>
+                <li>Status: <span th:text="${userAttempt.status}"></span></li>
+                <li>Start Time: <span th:text="${#temporals.format(userAttempt.startTime.toLocalTime(), 'HH:mm:ss')}"></span></li>
+                <li>End Time: <span th:text="${#temporals.format(userAttempt.endTime.toLocalTime(), 'HH:mm:ss')}"></span></li>
+            </ul>
+        </div>
     </div>
 </main>
 <footer>
-    <p>HTML-HOLIC &copy; 2024</p>
+    <p>&copy; 2024 Html-holic by Unipi Informatics Students</p>
 </footer>
 </body>
 </html>

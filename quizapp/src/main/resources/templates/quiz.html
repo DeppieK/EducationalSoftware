@@ -244,9 +244,8 @@
             Mistakes: 0/3
         </ul>
         <form th:action="@{/submitQuiz/{quizId}(quizId = ${quiz.quizId})}" method="post" id="quizForm">
-            <p th:if="${question != null}" th:text="${question.questionText}"></p>
             <div th:each="question : ${questions}" class="question">
-                <p th:text="${question.questionText}"></p>
+                <p th:text="${questionTexts[question.questionId]}"></p>
                 <ul>
                     <li th:each="option : ${question.questionOptions}">
                         <label>
@@ -260,7 +259,7 @@
                 </ul>
                 <input type="hidden" name="answers" class="answer-input">
             </div>
-            <button onClick = "submitQuizForm()" id="submitBtn" disabled>Submit</button>
+            <button onClick="submitQuizForm()" id="submitBtn" disabled>Submit</button>
         </form>
     </div>
 </main>
