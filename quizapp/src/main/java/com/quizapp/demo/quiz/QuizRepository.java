@@ -14,4 +14,5 @@ public interface QuizRepository extends JpaRepository<Quiz, Long> {
     List<Quiz> findByUnitAndDifficulty(String unit, Quiz.Difficulty difficulty);
 
 
+    List<Quiz> findByUnit(String unit);
 }

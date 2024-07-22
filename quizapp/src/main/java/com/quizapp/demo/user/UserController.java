@@ -6,6 +6,8 @@ import com.quizapp.demo.question.QuestionRepository;
 import com.quizapp.demo.quiz.Quiz;
 import com.quizapp.demo.quiz.QuizRepository;
 import com.quizapp.demo.quiz.QuizService;
+import com.quizapp.demo.userQuizStatus.UserQuizStatus;
+import com.quizapp.demo.userQuizStatus.UserQuizStatusService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -30,6 +32,9 @@ public class UserController {
     private QuizService quizService;
     private QuizRepository quizRepository;
     private QuestionRepository questionRepository;
+    @Autowired
+    private UserQuizStatusService userQuizStatusService;
+
     @Autowired
     private User user;
 
@@ -150,10 +155,13 @@ public class UserController {
 
         List<Quiz> quiz = quizService.findByUnitAndDifficulty("Intro", userLevel);
 
+        List<UserQuizStatus> quizStatuses = userQuizStatusService.getUserQuizStatuses(user, "Intro");
+
         //sort quizzes based on the label
         quiz.sort(Comparator.comparing(Quiz::getLabel));
 
         model.addAttribute("quiz", quiz);
+        model.addAttribute("quizStatuses", quizStatuses);
 
         return "quizList";
     }
@@ -166,11 +174,15 @@ public class UserController {
         User user = userService.findByUsername(username);
         Quiz.Difficulty userLevel = user.getLevel();
 
-        List<Quiz> quiz = quizService.findByUnitAndDifficulty("Basics", userLevel);
+        List<Quiz> quiz = quizService.findByUnitAndDifficulty("Intro", userLevel);
 
+        List<UserQuizStatus> quizStatuses = userQuizStatusService.getUserQuizStatuses(user, "Intro");
+
+        //sort quizzes based on the label
         quiz.sort(Comparator.comparing(Quiz::getLabel));
 
         model.addAttribute("quiz", quiz);
+        model.addAttribute("quizStatuses", quizStatuses);
 
         return "quizList";
     }
@@ -183,11 +195,15 @@ public class UserController {
         User user = userService.findByUsername(username);
         Quiz.Difficulty userLevel = user.getLevel();
 
-        List<Quiz> quiz = quizService.findByUnitAndDifficulty("Forms", userLevel);
+        List<Quiz> quiz = quizService.findByUnitAndDifficulty("Intro", userLevel);
 
+        List<UserQuizStatus> quizStatuses = userQuizStatusService.getUserQuizStatuses(user, "Intro");
+
+        //sort quizzes based on the label
         quiz.sort(Comparator.comparing(Quiz::getLabel));
 
         model.addAttribute("quiz", quiz);
+        model.addAttribute("quizStatuses", quizStatuses);
 
         return "quizList";
     }
