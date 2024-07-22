@@ -56,6 +56,8 @@ public class QuizController {
         Long userId = user.getId();
 
         Quiz quiz = quizRepository.findById(quizId).orElse(null);
+        Completion completion = completionRepository.findByUserAndQuiz(user,quiz);
+
 
         // Find the questions for this quiz
         List<Question> questions = questionRepository.findByQuiz(quiz);
@@ -63,7 +65,7 @@ public class QuizController {
 
         for (Question question : questions) {
             Optional<QuestionAttempt> attemptOpt = questionAttemptRepository.findByUserAndQuestion(user, question);
-            if (attemptOpt.isPresent() && attemptOpt.get().getAttempt() > 4) {
+            if (attemptOpt.isPresent() && attemptOpt.get().getAttempt() >= 3) {
                 questionTexts.put(question.getQuestionId(), question.getAlternativeQuestionText());
             } else {
                 questionTexts.put(question.getQuestionId(), question.getQuestionText());
@@ -75,6 +77,8 @@ public class QuizController {
         model.addAttribute("questionTexts", questionTexts);
         model.addAttribute("userId", userId);
         model.addAttribute("quizId", quizId);
+        model.addAttribute("completion", completion);
+
 
         return "quiz";
     }
