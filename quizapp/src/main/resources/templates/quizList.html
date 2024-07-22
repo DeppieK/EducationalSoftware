@@ -31,6 +31,7 @@
             align-items: center;
         }
 
+
         header p {
             font-size: 16px;
             margin-bottom: 10px;
@@ -41,9 +42,8 @@
             position: absolute;
             top: 5px;
             right: 5px;
-            text-align: center;
+            text-align: center; /* Center align the menu */
         }
-
         .menu a {
             display: block;
             color: #333;
@@ -67,7 +67,7 @@
         .menu a:hover {
             background-color: #999;
             color: #fff;
-            cursor: pointer;
+            cursor:pointer;
         }
 
         .navbar {
@@ -132,34 +132,55 @@
             background-color: #fafafa;
             flex: 1;
             display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 20px;
+            justify-content: space-around; /* Adjust spacing between image containers */
+            align-items: center; /* Align items vertically */
         }
 
-        h3 {
-            font-size: 24px;
+
+        .image-container {
+            margin-top: 20px;
+            text-align: center;
+            margin:13px;
+        }
+
+        .image-container img {
+            max-width: 100px; /* Adjust as needed */
+            height: auto;
+
+        }
+
+        .image-container p {
+            margin-top: 10px;
+            font-size: 17px;
             color: #333;
+            margin: 25px;
+        }
+
+        footer {
+            background-color: #b0b0b0;
+            color: #333;
+            text-align: center;
+            padding: 0px;
+            width: 100%;
+            font-size:12px;
+            font-family: 'Roboto', sans-serif;
+            font-weight: 250;
+        }
+        .quiz {
+            padding: 20px;
+            border-radius: 5px;
             margin-bottom: 20px;
         }
 
-        .quiz {
-            background: linear-gradient(135deg, #f0f0f0, #d0d0d0);
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            width: 100%;
-            max-width: 400px;
-            text-align: center;
-            transition: transform 0.3s;
-        }
-
-        .quiz:hover {
-            transform: translateY(-5px);
+        .quiz h3 {
+            font-size: 20px;
+            color: #007bff;
+            margin-bottom: 10px;
         }
 
         .quiz button {
-            margin-top: 10px;
+            display: block;
+            margin: 10px 0; /* Adjust vertical spacing */
             padding: 10px 20px;
             background-color: #007bff;
             color: #fff;
@@ -167,9 +188,6 @@
             border-radius: 5px;
             cursor: pointer;
             transition: background-color 0.3s, transform 0.3s;
-            width: 100%;
-            text-align: center;
-            font-size: 16px;
         }
 
         .quiz button:hover {
@@ -181,16 +199,26 @@
             background-color: #b0b0b0;
             color: #333;
             text-align: center;
-            padding: 10px;
+            padding: 0px;
             width: 100%;
-            font-size: 12px;
+            font-size:12px;
             font-family: 'Roboto', sans-serif;
             font-weight: 250;
         }
-
-        .href {
+        .href{
             text-decoration: none;
-            color: inherit;
+        }
+        img {
+            height:15px;
+            width:15px;
+        }
+        .disabled {
+            pointer-events: none;
+            opacity: 0.5;
+        }
+        .enabled {
+            pointer-events: auto;
+            opacity: 1;
         }
     </style>
 </head>
@@ -217,15 +245,18 @@
     </ul>
 </div>
 <main>
+
     <h3>Quiz List:</h3>
     <div th:each="quiz : ${quiz}" class="quiz">
         <a th:href="@{/quiz/{quizId}(quizId = ${quiz.quizId})}" class="href">
             <button th:text="'Quiz ' + ${quiz.label}"></button>
         </a>
     </div>
+
 </main>
 <footer>
     <p>&copy; 2024 Html-holic by Unipi Informatics Students</p>
 </footer>
+
 </body>
 </html>
